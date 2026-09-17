@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Lady Warriors Girls Soccer - Stat Report & SMAC Conference</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0b152e;
+            color: #ffffff;
+        }
+
+        .bg-navy-main { background-color: #11234B; }
+        .bg-navy-card { background-color: #1a2f5c; }
+        .bg-powder { background-color: #99badd; }
+        .text-powder { color: #99badd; }
+        .border-powder { border-color: #99badd; }
+
+        .glow-navy {
+            box-shadow: 0 10px 25px -5px rgba(17, 35, 75, 0.6);
+        }
+        .glow-powder {
+            box-shadow: 0 0 20px rgba(153, 186, 221, 0.25);
+        }
+
+        .progress-bar-fill {
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b152e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1a2f5c;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #99badd;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-12">
+
+    <!-- Top Navigation / Header -->
+    <header class="bg-navy-main border-b border-[#99badd]/20 py-4 px-4 sm:px-8 sticky top-0 z-50 backdrop-blur-md bg-opacity-95">
+        <div class="max-w-[1480px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <!-- Team Shield Logo Badge -->
+                <div class="w-12 h-12 rounded-xl bg-[#99badd] text-[#11234B] flex items-center justify-center font-extrabold text-2xl shadow-lg border-2 border-white">
+                    LP
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold tracking-tight text-white flex items-center gap-2">
+                        2026 LADY WARRIORS GIRLS SOCCER
+                    </h1>
+                    <p class="text-xs text-[#99badd]/80 font-medium">Official Team Performance & SMAC Conference Portal</p>
+                </div>
+            </div>
+
+            <!-- Page Navigation Tabs -->
+            <div class="flex items-center bg-[#1a2f5c] p-1 rounded-xl border border-[#99badd]/30 w-full md:w-auto overflow-x-auto">
+                <button onclick="switchTab('stats')" id="tab-stats" class="tab-btn px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap bg-[#99badd] text-[#11234B] shadow-md">
+                    <i data-lucide="bar-chart-2" class="w-4 h-4"></i> Match & Player Stats
+                </button>
+                <button onclick="switchTab('standings')" id="tab-standings" class="tab-btn px-4 py-2 rounded-lg text-xs font-bold text-[#99badd] hover:text-white transition-all flex items-center gap-2 whitespace-nowrap">
+                    <i data-lucide="trophy" class="w-4 h-4"></i> SMAC Standings & Results
+                </button>
+                <button onclick="switchTab('schedule')" id="tab-schedule" class="tab-btn px-4 py-2 rounded-lg text-xs font-bold text-[#99badd] hover:text-white transition-all flex items-center gap-2 whitespace-nowrap">
+                    <i data-lucide="calendar" class="w-4 h-4"></i> Team Schedule
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[1480px] mx-auto px-4 sm:px-8 mt-6 space-y-8">
+
+        <!-- ================= TAB 1: MATCH & PLAYER STATS ================= -->
+        <div id="view-stats" class="tab-content space-y-8">
+            
+            <!-- Dynamic Game Banner Header -->
+            <section class="bg-navy-main rounded-2xl p-6 sm:p-8 border border-[#99badd]/30 glow-powder relative overflow-hidden">
+                <div class="absolute inset-0 bg-[radial-gradient(#99badd_1px,transparent_1px)] [background-size:16px_16px] opacity-10 pointer-events-none"></div>
+
+                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <!-- Date and Selector -->
+                    <div class="space-y-2 text-center md:text-left">
+                        <div class="flex items-center justify-center md:justify-start gap-2">
+                            <div class="inline-flex items-center gap-2 bg-[#99badd]/15 text-[#99badd] text-xs font-bold px-3 py-1 rounded-full border border-[#99badd]/30">
+                                <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                                <span id="matchDate">Sep 15, 2026</span>
+                            </div>
+                            <span id="matchLocation" class="text-xs text-[#99badd]/80 bg-[#1a2f5c] px-3 py-1 rounded-full border border-[#99badd]/20 font-medium">Away Match</span>
+                        </div>
+                        
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1" id="matchTitle">La Plata vs Lackey</h2>
+
+                        <!-- Match Selector Dropdown -->
+                        <div class="flex items-center gap-2 pt-2 justify-center md:justify-start">
+                            <label for="gameSelector" class="text-xs font-semibold text-[#99badd] whitespace-nowrap flex items-center gap-1">
+                                <i data-lucide="filter" class="w-3.5 h-3.5"></i> Select View:
+                            </label>
+                            <select id="gameSelector" onchange="switchGame(this.value)" class="bg-[#1a2f5c] text-white text-xs font-bold rounded-lg px-3 py-1.5 border border-[#99badd]/40 focus:outline-none focus:ring-2 focus:ring-[#99badd] transition-all cursor-pointer">
+                                <option value="season" selected>2026 Season Cumulative Overview</option>
+                                <option value="latest">Sep 15 - vs Lackey (6-1 W)</option>
+                                <option value="5">Sep 14 - vs Oxon Hill (6-1 W)</option>
+                                <option value="4">Sep 10 - vs Leonardtown (1-4 L)</option>
+                                <option value="3">Sep 8 - vs Chopticon (3-1 W)</option>
+                                <option value="2">Sep 5 - vs Southern (1-1 T)</option>
+                                <option value="1">Sep 5 - vs Marriott Ridge (1-1 T)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Live Scoreboard Display -->
+                    <div class="flex items-center justify-center gap-6 bg-[#1a2f5c] px-8 py-5 rounded-2xl border border-[#99badd]/30 shadow-xl">
+                        <!-- Home/La Plata -->
+                        <div class="text-center">
+                            <span class="block text-xs font-extrabold text-[#99badd] uppercase tracking-wider">La Plata</span>
+                            <span class="text-5xl font-black text-white" id="scoreHome">6</span>
+                        </div>
+
+                        <div class="text-center px-2">
+                            <span class="text-2xl font-bold text-[#99badd]/60">:</span>
+                            <div id="matchBadge" class="text-[10px] font-black uppercase px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 mt-1">WIN</div>
+                        </div>
+
+                        <!-- Opponent -->
+                        <div class="text-center">
+                            <span class="block text-xs font-extrabold text-[#99badd] uppercase tracking-wider truncate max-w-[120px]" id="opponentName">Lackey</span>
+                            <span class="text-5xl font-black text-white" id="scoreAway">1</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2 Column Layout: Goals Left, Assists Right -->
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- GOALS COLUMN (Left) -->
+                <div class="bg-navy-main rounded-2xl p-6 border border-[#99badd]/30 flex flex-col justify-between shadow-lg">
+                    <div>
+                        <div class="flex items-center justify-between pb-4 mb-4 border-b border-[#99badd]/20">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-[#99badd]/20 text-[#99badd] flex items-center justify-center border border-[#99badd]/30">
+                                    <i data-lucide="trophy" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-extrabold text-white">GOALS</h3>
+                                    <p class="text-xs text-[#99badd]" id="goalsSubtext">Match Breakdown</p>
+                                </div>
+                            </div>
+                            <span class="text-3xl font-black text-[#99badd]" id="totalGoalsCount">6</span>
+                        </div>
+
+                        <div class="space-y-3" id="goalsList">
+                            <!-- Dynamic Goals Render Here -->
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-[#99badd]/10 text-xs text-[#99badd]/70 flex items-center justify-between">
+                        <span>Season Goal Leader: <strong class="text-white font-bold">Emma R (5 Goals)</strong></span>
+                        <i data-lucide="activity" class="w-4 h-4 text-[#99badd]"></i>
+                    </div>
+                </div>
+
+                <!-- ASSISTS COLUMN (Right) -->
+                <div class="bg-navy-main rounded-2xl p-6 border border-[#99badd]/30 flex flex-col justify-between shadow-lg">
+                    <div>
+                        <div class="flex items-center justify-between pb-4 mb-4 border-b border-[#99badd]/20">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-[#99badd]/20 text-[#99badd] flex items-center justify-center border border-[#99badd]/30">
+                                    <i data-lucide="sparkles" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-extrabold text-white">ASSISTS</h3>
+                                    <p class="text-xs text-[#99badd]" id="assistsSubtext">Playmaking Leaders</p>
+                                </div>
+                            </div>
+                            <span class="text-3xl font-black text-[#99badd]" id="totalAssistsCount">4</span>
+                        </div>
+
+                        <div class="space-y-3" id="assistsList">
+                            <!-- Dynamic Assists Render Here -->
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-[#99badd]/10 text-xs text-[#99badd]/70 flex items-center justify-between">
+                        <span>Season Assist Leader: <strong class="text-white font-bold">Brynn (3 Assists)</strong></span>
+                        <i data-lucide="award" class="w-4 h-4 text-[#99badd]"></i>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- 3 Horizontal Sections at the Bottom for Saves -->
+            <section class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-extrabold text-white flex items-center gap-2">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-[#99badd]"></i> GOALKEEPING & SAVES
+                    </h3>
+                    <span class="text-xs font-semibold text-[#99badd] bg-[#99badd]/10 px-3 py-1 rounded-full border border-[#99badd]/20">Defensive Summary</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                    <!-- Card 1: Match/Selected Saves -->
+                    <div class="bg-navy-main p-5 rounded-2xl border border-[#99badd]/30 relative overflow-hidden group hover:border-[#99badd]/60 transition-all shadow-md">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold text-[#99badd] uppercase tracking-wider">Match Saves</span>
+                            <div class="p-2 rounded-lg bg-[#99badd]/10 text-[#99badd]">
+                                <i data-lucide="shield" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <div class="text-3xl font-black text-white mb-1" id="saveStatMain">43</div>
+                        <p class="text-xs text-[#99badd]/80" id="saveStatMainDesc">2026 Season Overall</p>
+                        <div class="mt-4 w-full bg-[#1a2f5c] h-2 rounded-full overflow-hidden">
+                            <div id="saveStatBar1" class="bg-[#99badd] h-full progress-bar-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Goalkeeper Stats (Maddie) -->
+                    <div class="bg-navy-main p-5 rounded-2xl border border-[#99badd]/30 relative overflow-hidden group hover:border-[#99badd]/60 transition-all shadow-md">
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="text-xs font-bold text-[#99badd] uppercase tracking-wider">Maddie #00</span>
+                                <h4 class="text-sm font-bold text-white">Goalkeeper</h4>
+                            </div>
+                            <div class="p-2 rounded-lg bg-[#99badd]/10 text-[#99badd]">
+                                <i data-lucide="user-check" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <div class="text-3xl font-black text-white mb-1">38</div>
+                        <p class="text-xs text-[#99badd]/80">Total Saves (5 Games Played)</p>
+                        <div class="mt-4 w-full bg-[#1a2f5c] h-2 rounded-full overflow-hidden">
+                            <div class="bg-[#99badd] h-full progress-bar-fill" style="width: 88%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Goalkeeper Stats (Stella) -->
+                    <div class="bg-navy-main p-5 rounded-2xl border border-[#99badd]/30 relative overflow-hidden group hover:border-[#99badd]/60 transition-all shadow-md">
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="text-xs font-bold text-[#99badd] uppercase tracking-wider">Stella</span>
+                                <h4 class="text-sm font-bold text-white">Goalkeeper</h4>
+                            </div>
+                            <div class="p-2 rounded-lg bg-[#99badd]/10 text-[#99badd]">
+                                <i data-lucide="user-check" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <div class="text-3xl font-black text-white mb-1">5</div>
+                        <p class="text-xs text-[#99badd]/80">Total Saves (vs. Marriott Ridge)</p>
+                        <div class="mt-4 w-full bg-[#1a2f5c] h-2 rounded-full overflow-hidden">
+                            <div class="bg-[#99badd] h-full progress-bar-fill" style="width: 12%"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+
+        <!-- ================= TAB 2: SMAC STANDINGS & RESULTS ================= -->
+        <div id="view-standings" class="tab-content hidden space-y-8">
+            
+            <!-- SMAC Header Banner -->
+            <div class="bg-navy-main rounded-2xl p-6 sm:p-8 border border-[#99badd]/30 glow-powder flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-[#99badd]/15 text-[#99badd] text-xs font-bold px-3 py-1 rounded-full border border-[#99badd]/30 mb-2">
+                        <i data-lucide="award" class="w-3.5 h-3.5"></i>
+                        <span>2026 High School Soccer</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-black text-white">Southern Maryland Athletic Conference (SMAC)</h2>
+                    <p class="text-xs text-[#99badd]/80 mt-1">Official League Standings & Conference Match Results</p>
+                </div>
+                
+                <div class="bg-[#1a2f5c] px-6 py-4 rounded-xl border border-[#99badd]/30 text-center flex items-center gap-4">
+                    <div>
+                        <span class="text-xs text-[#99badd] font-bold block uppercase">La Plata Rank</span>
+                        <span class="text-2xl font-black text-white">#5 in SMAC</span>
+                    </div>
+                    <div class="h-8 w-px bg-[#99badd]/20"></div>
+                    <div>
+                        <span class="text-xs text-[#99badd] font-bold block uppercase">Conference Record</span>
+                        <span class="text-2xl font-black text-emerald-400">3-1-0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Standings Table Card -->
+            <div class="bg-navy-main rounded-2xl p-6 border border-[#99badd]/30 shadow-xl space-y-4">
+                <div class="flex items-center justify-between pb-2 border-b border-[#99badd]/20">
+                    <h3 class="text-lg font-extrabold text-white flex items-center gap-2">
+                        <i data-lucide="trophy" class="w-5 h-5 text-[#99badd]"></i> SMAC Overall Standings
+                    </h3>
+                    <span class="text-xs text-[#99badd] bg-[#1a2f5c] px-3 py-1 rounded-full border border-[#99badd]/20 font-medium">Updated Sep 16, 2026</span>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead>
+                            <tr class="bg-[#1a2f5c] text-[#99badd] text-xs font-bold uppercase tracking-wider rounded-lg border-b border-[#99badd]/20">
+                                <th class="p-3.5 rounded-l-lg">Rank & Team</th>
+                                <th class="p-3.5 text-center">Wins (W)</th>
+                                <th class="p-3.5 text-center">Losses (L)</th>
+                                <th class="p-3.5 text-center">Games Played (GP)</th>
+                                <th class="p-3.5 text-center rounded-r-lg">Win Pct (.PCT)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-[#99badd]/10 font-semibold text-white" id="standingsTableBody">
+                            <!-- Populated dynamically by script -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Game-by-Game Results Section -->
+            <div class="bg-navy-main rounded-2xl p-6 border border-[#99badd]/30 shadow-xl space-y-4">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-2 border-b border-[#99badd]/20">
+                    <div>
+                        <h3 class="text-lg font-extrabold text-white flex items-center gap-2">
+                            <i data-lucide="calendar-range" class="w-5 h-5 text-[#99badd]"></i> Game-by-Game League Results
+                        </h3>
+                        <p class="text-xs text-[#99badd]/70">All recorded matches across the SMAC conference</p>
+                    </div>
+
+                    <!-- Search Filter -->
+                    <div class="relative w-full sm:w-64">
+                        <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[#99badd]"></i>
+                        <input type="text" id="resultsSearch" onkeyup="filterResults()" placeholder="Filter team or date..." class="w-full pl-9 pr-3 py-1.5 bg-[#1a2f5c] border border-[#99badd]/30 rounded-lg text-xs font-bold text-white placeholder-[#99badd]/50 focus:outline-none focus:ring-2 focus:ring-[#99badd]" />
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead>
+                            <tr class="bg-[#1a2f5c] text-[#99badd] text-xs font-bold uppercase tracking-wider border-b border-[#99badd]/20">
+                                <th class="p-3.5 rounded-l-lg">Date</th>
+                                <th class="p-3.5">Matchup</th>
+                                <th class="p-3.5 text-center rounded-r-lg">Score / Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-[#99badd]/10 font-medium text-white" id="resultsTableBody">
+                            <!-- Populated dynamically by script -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= TAB 3: TEAM SCHEDULE ================= -->
+        <div id="view-schedule" class="tab-content hidden space-y-8">
+            <div class="bg-navy-main rounded-2xl p-6 border border-[#99badd]/30 shadow-xl space-y-4">
+                <div class="flex items-center justify-between pb-2 border-b border-[#99badd]/20">
+                    <div>
+                        <h3 class="text-lg font-extrabold text-white flex items-center gap-2">
+                            <i data-lucide="calendar" class="w-5 h-5 text-[#99badd]"></i> 2026 Lady Warriors Girls Soccer Schedule
+                        </h3>
+                        <p class="text-xs text-[#99badd]/80">Complete regular season game schedule and results</p>
+                    </div>
+                    <span class="text-xs font-bold text-[#11234B] bg-[#99badd] px-3 py-1 rounded-full">Record: 3-1-2</span>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead>
+                            <tr class="bg-[#1a2f5c] text-[#99badd] text-xs font-bold uppercase tracking-wider border-b border-[#99badd]/20">
+                                <th class="p-3.5 rounded-l-lg">Date & Day</th>
+                                <th class="p-3.5">Time / Location</th>
+                                <th class="p-3.5">Opponent</th>
+                                <th class="p-3.5 text-center">Result</th>
+                                <th class="p-3.5 rounded-r-lg">Event Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-[#99badd]/10 font-medium text-white" id="scheduleTableBody">
+                            <!-- Populated dynamically by script -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Script to Handle Dynamic Logic, Navigation, and Tables -->
+    <script>
+        // Data Structures
+        const smacStandings = [
+            { team: "Leonardtown", w: 5, l: 0, gp: 5, pct: "1.000", isLP: false },
+            { team: "Huntingtown", w: 4, l: 0, gp: 4, pct: "1.000", isLP: false },
+            { team: "Northern", w: 3, l: 1, gp: 4, pct: ".750", isLP: false },
+            { team: "McDonough", w: 3, l: 1, gp: 4, pct: ".750", isLP: false },
+            { team: "La Plata", w: 3, l: 1, gp: 4, pct: ".750", isLP: true },
+            { team: "Calvert", w: 2, l: 1, gp: 3, pct: ".667", isLP: false },
+            { team: "North Point", w: 2, l: 1, gp: 3, pct: ".667", isLP: false },
+            { team: "Patuxent", w: 2, l: 2, gp: 4, pct: ".500", isLP: false },
+            { team: "Great Mills", w: 2, l: 3, gp: 5, pct: ".400", isLP: false },
+            { team: "Chopticon", w: 2, l: 3, gp: 5, pct: ".400", isLP: false },
+            { team: "Westlake", w: 0, l: 2, gp: 2, pct: ".000", isLP: false },
+            { team: "Henry E. Lackey", w: 0, l: 5, gp: 5, pct: ".000", isLP: false },
+            { team: "St. Charles", w: 0, l: 5, gp: 5, pct: ".000", isLP: false }
+        ];
+
+        const smacResults = [
+            { date: "Sep 15, 2026", matchup: "Patuxent vs. North Point", score: "2 – 6" },
+            { date: "Sep 15, 2026", matchup: "Henry E. Lackey vs. La Plata", score: "1 – 6", isLP: true },
+            { date: "Sep 15, 2026", matchup: "Huntingtown vs. Great Mills", score: "4 – 0" },
+            { date: "Sep 15, 2026", matchup: "McDonough vs. Chopticon", score: "9 – 1" },
+            { date: "Sep 15, 2026", matchup: "Westlake vs. Leonardtown", score: "0 – 11" },
+            { date: "Sep 15, 2026", matchup: "Northern-C vs. St. Charles", score: "14 – 0" },
+            { date: "Sep 14, 2026", matchup: "La Plata vs. Oxon Hill", score: "6 – 1", isLP: true },
+            { date: "Sep 11, 2026", matchup: "Henry E. Lackey vs. Calverton", score: "No Score" },
+            { date: "Sep 11, 2026", matchup: "McDonough vs. North Point", score: "0 – 1" },
+            { date: "Sep 10, 2026", matchup: "Liberty vs. Great Mills", score: "10 – 2" },
+            { date: "Sep 10, 2026", matchup: "Patuxent vs. Chopticon", score: "2 – 7" },
+            { date: "Sep 10, 2026", matchup: "Henry E. Lackey vs. Huntingtown", score: "0 – 11" },
+            { date: "Sep 10, 2026", matchup: "Calvert vs. St. Charles", score: "11 – 1" },
+            { date: "Sep 10, 2026", matchup: "La Plata vs. Leonardtown", score: "1 – 4", isLP: true },
+            { date: "Sep 8, 2026", matchup: "Patuxent vs. St. Charles", score: "9 – 1" },
+            { date: "Sep 8, 2026", matchup: "Henry E. Lackey vs. McDonough", score: "0 – 13" },
+            { date: "Sep 8, 2026", matchup: "Calvert vs. North Point", score: "1 – 0" },
+            { date: "Sep 8, 2026", matchup: "La Plata vs. Chopticon", score: "4 – 1", isLP: true },
+            { date: "Sep 8, 2026", matchup: "Westlake vs. Great Mills", score: "1 – 9" },
+            { date: "Sep 8, 2026", matchup: "Northern-C vs. Leonardtown", score: "0 – 3" },
+            { date: "Sep 5, 2026", matchup: "La Plata vs. Marriotts Ridge", score: "1 – 1", isLP: true },
+            { date: "Sep 5, 2026", matchup: "La Plata vs. Southern-AA", score: "1 – 1", isLP: true },
+            { date: "Sep 5, 2026", matchup: "Atholton vs. Northern-C", score: "1 – 4" },
+            { date: "Sep 5, 2026", matchup: "Northern-C vs. Montgomery Blair", score: "2 – 3" },
+            { date: "Sep 5, 2026", matchup: "Arundel vs. North Point", score: "4 – 0" },
+            { date: "Sep 5, 2026", matchup: "North Point vs. River Hill", score: "No Score" },
+            { date: "Sep 4, 2026", matchup: "Southern-AA vs. Huntingtown", score: "2 – 6" },
+            { date: "Sep 4, 2026", matchup: "Calvert vs. MD- Archbishop Spalding", score: "1 – 3" },
+            { date: "Sep 4, 2026", matchup: "Northern-C vs. Chopticon", score: "6 – 0" },
+            { date: "Sep 4, 2026", matchup: "North Point vs. Westlake", score: "No Score" }
+        ];
+
+        const lpSchedule = [
+            { date: "5-Sep", day: "Saturday", time: "—", loc: "Neutral", opp: "Marriott Ridge", result: "1 - 1 (T)", notes: "Tournament Match" },
+            { date: "5-Sep", day: "Saturday", time: "—", loc: "Neutral", opp: "Southern High School", result: "1 - 1 (T)", notes: "Tournament Match" },
+            { date: "8-Sep", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "Chopticon", result: "3 - 1 (W)", notes: "SMAC Match" },
+            { date: "10-Sep", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Leonardtown", result: "1 - 4 (L)", notes: "SMAC Match" },
+            { date: "14-Sep", day: "Monday", time: "6:15 PM", loc: "Home", opp: "Oxon Hill", result: "6 - 1 (W)", notes: "Teacher Appreciation (JV 4:30)" },
+            { date: "15-Sep", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "Lackey", result: "6 - 1 (W)", notes: "SMAC Match" },
+            { date: "17-Sep", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Patuxent", result: "Upcoming", notes: "Regular Season" },
+            { date: "24-Sep", day: "Thursday", time: "6:15 PM", loc: "Away", opp: "Northern", result: "Upcoming", notes: "Regular Season" },
+            { date: "29-Sep", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "McDonough", result: "Upcoming", notes: "Regular Season" },
+            { date: "1-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Northern", result: "Upcoming", notes: "W/ JV 4:30" },
+            { date: "6-Oct", day: "Tuesday", time: "4:30 PM", loc: "Home", opp: "North Point", result: "Upcoming", notes: "Regular Season" },
+            { date: "8-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Huntingtown", result: "Upcoming", notes: "Regular Season" },
+            { date: "13-Oct", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "Westlake", result: "Upcoming", notes: "Regular Season" },
+            { date: "15-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Calvert", result: "Upcoming", notes: "Senior Night" }
+        ];
+
+        const gamesData = {
+            "latest": {
+                date: "Sep 15, 2026",
+                opponent: "Lackey",
+                location: "Away Match",
+                homeScore: 6,
+                awayScore: 1,
+                result: "WIN",
+                resultClass: "bg-emerald-500/20 text-emerald-400 border-emerald-500/40",
+                goals: [
+                    { name: "Callie", count: 2 },
+                    { name: "Emma R", count: 2 },
+                    { name: "Kylie", count: 1 },
+                    { name: "Brynn", count: 1 }
+                ],
+                assists: [
+                    { name: "Maddie B", count: 1 },
+                    { name: "Abby", count: 1 },
+                    { name: "Carly", count: 1 },
+                    { name: "Brynn", count: 1 }
+                ],
+                saves: "7 Saves (Maddie)"
+            },
+            "5": {
+                date: "Sep 14, 2026",
+                opponent: "Oxon Hill",
+                location: "Home Match",
+                homeScore: 6,
+                awayScore: 1,
+                result: "WIN",
+                resultClass: "bg-emerald-500/20 text-emerald-400 border-emerald-500/40",
+                goals: [
+                    { name: "Emma R", count: 2 },
+                    { name: "Emma B", count: 1 },
+                    { name: "Abby", count: 1 },
+                    { name: "Brynn", count: 1 },
+                    { name: "Callie", count: 1 }
+                ],
+                assists: [
+                    { name: "Brynn", count: 1 },
+                    { name: "Kylie Row", count: 1 },
+                    { name: "Abby", count: 1 }
+                ],
+                saves: "7 Saves (Maddie)"
+            },
+            "4": {
+                date: "Sep 10, 2026",
+                opponent: "Leonardtown",
+                location: "Home Match",
+                homeScore: 1,
+                awayScore: 4,
+                result: "LOSS",
+                resultClass: "bg-rose-500/20 text-rose-400 border-rose-500/40",
+                goals: [
+                    { name: "Callie", count: 1 }
+                ],
+                assists: [
+                    { name: "Finn", count: 1 }
+                ],
+                saves: "10 Saves (Maddie)"
+            },
+            "3": {
+                date: "Sep 8, 2026",
+                opponent: "Chopticon",
+                location: "Away Match",
+                homeScore: 3,
+                awayScore: 1,
+                result: "WIN",
+                resultClass: "bg-emerald-500/20 text-emerald-400 border-emerald-500/40",
+                goals: [
+                    { name: "Evelyn", count: 2 },
+                    { name: "Zoe", count: 1 }
+                ],
+                assists: [
+                    { name: "Emma B", count: 1 }
+                ],
+                saves: "7 Saves (Maddie)"
+            },
+            "2": {
+                date: "Sep 5, 2026",
+                opponent: "Southern High School",
+                location: "Neutral Match",
+                homeScore: 1,
+                awayScore: 1,
+                result: "TIE",
+                resultClass: "bg-amber-500/20 text-amber-400 border-amber-500/40",
+                goals: [
+                    { name: "Emma R", count: 1 }
+                ],
+                assists: [
+                    { name: "Kiley", count: 1 }
+                ],
+                saves: "7 Saves (Maddie)"
+            },
+            "1": {
+                date: "Sep 5, 2026",
+                opponent: "Marriott Ridge",
+                location: "Neutral Match",
+                homeScore: 1,
+                awayScore: 1,
+                result: "TIE",
+                resultClass: "bg-amber-500/20 text-amber-400 border-amber-500/40",
+                goals: [
+                    { name: "Kiley", count: 1 }
+                ],
+                assists: [
+                    { name: "Zoe", count: 1 },
+                    { name: "Brynn", count: 1 }
+                ],
+                saves: "5 Saves (Stella)"
+            },
+            "season": {
+                date: "2026 Season Overall",
+                opponent: "6 Games Played",
+                location: "Record: 3-1-2",
+                homeScore: 18,
+                awayScore: 9,
+                result: "3-1-2",
+                resultClass: "bg-[#99badd]/20 text-[#99badd] border-[#99badd]/40",
+                goals: [
+                    { name: "Emma R", count: 5 },
+                    { name: "Callie", count: 4 },
+                    { name: "Brynn", count: 2 },
+                    { name: "Evelyn", count: 2 },
+                    { name: "Kiley / Kylie", count: 2 },
+                    { name: "Abby", count: 1 },
+                    { name: "Emma B", count: 1 },
+                    { name: "Zoe", count: 1 }
+                ],
+                assists: [
+                    { name: "Brynn", count: 3 },
+                    { name: "Abby", count: 2 },
+                    { name: "Kiley / Kylie Row", count: 2 },
+                    { name: "Carly", count: 1 },
+                    { name: "Emma B", count: 1 },
+                    { name: "Finn", count: 1 },
+                    { name: "Maddie B", count: 1 },
+                    { name: "Zoe", count: 1 }
+                ],
+                saves: "43 Total Saves (Maddie: 38, Stella: 5)"
+            }
+        };
+
+        // Navigation Switcher
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = 'tab-btn px-4 py-2 rounded-lg text-xs font-bold text-[#99badd] hover:text-white transition-all flex items-center gap-2 whitespace-nowrap';
+            });
+
+            document.getElementById(`view-${tab}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-${tab}`);
+            activeBtn.className = 'tab-btn px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap bg-[#99badd] text-[#11234B] shadow-md';
+        }
+
+        // Render Match Stats
+        function switchGame(key) {
+            const data = gamesData[key];
+            if (!data) return;
+
+            document.getElementById('matchDate').innerText = data.date;
+            document.getElementById('matchTitle').innerText = key === 'season' ? '2026 Season Cumulative Totals' : `La Plata vs ${data.opponent}`;
+            document.getElementById('matchLocation').innerText = data.location;
+            document.getElementById('opponentName').innerText = key === 'season' ? 'Opponents' : data.opponent;
+            document.getElementById('scoreHome').innerText = data.homeScore;
+            document.getElementById('scoreAway').innerText = data.awayScore;
+
+            const badge = document.getElementById('matchBadge');
+            badge.innerText = data.result;
+            badge.className = `text-[10px] font-black uppercase px-2.5 py-0.5 rounded border mt-1 ${data.resultClass}`;
+
+            const totalGoals = data.goals.reduce((acc, curr) => acc + curr.count, 0);
+            const totalAssists = data.assists.reduce((acc, curr) => acc + curr.count, 0);
+
+            document.getElementById('totalGoalsCount').innerText = totalGoals;
+            document.getElementById('totalAssistsCount').innerText = totalAssists;
+
+            // Render Goals
+            document.getElementById('goalsList').innerHTML = data.goals.map(g => {
+                const pct = Math.round((g.count / (totalGoals || 1)) * 100);
+                return `
+                    <div class="bg-[#1a2f5c] p-3 rounded-xl border border-[#99badd]/20 flex items-center justify-between hover:border-[#99badd]/40 transition-all">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-[#99badd]/15 text-[#99badd] flex items-center justify-center text-xs font-bold">⚽</span>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">${g.name}</h4>
+                                <span class="text-[10px] text-[#99badd]/70">${pct}% of team goals</span>
+                            </div>
+                        </div>
+                        <span class="text-lg font-black text-white bg-[#11234B] px-3 py-1 rounded-lg border border-[#99badd]/30">${g.count}</span>
+                    </div>
+                `;
+            }).join('');
+
+            // Render Assists
+            document.getElementById('assistsList').innerHTML = data.assists.map(a => {
+                const pct = Math.round((a.count / (totalAssists || 1)) * 100);
+                return `
+                    <div class="bg-[#1a2f5c] p-3 rounded-xl border border-[#99badd]/20 flex items-center justify-between hover:border-[#99badd]/40 transition-all">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-[#99badd]/15 text-[#99badd] flex items-center justify-center text-xs font-bold">🎯</span>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">${a.name}</h4>
+                                <span class="text-[10px] text-[#99badd]/70">${pct}% of team assists</span>
+                            </div>
+                        </div>
+                        <span class="text-lg font-black text-white bg-[#11234B] px-3 py-1 rounded-lg border border-[#99badd]/30">${a.count}</span>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('saveStatMain').innerText = key === 'season' ? '43' : (data.saves.split(' ')[0] || '7');
+            document.getElementById('saveStatMainDesc').innerText = key === 'season' ? 'Season Team Saves' : `${data.opponent} Match`;
+
+            lucide.createIcons();
+        }
+
+        // Render SMAC Standings Table
+        function renderStandings() {
+            const tbody = document.getElementById('standingsTableBody');
+            tbody.innerHTML = smacStandings.map((item, index) => {
+                const isLP = item.isLP;
+                const rowBg = isLP ? 'bg-[#99badd]/20 text-white font-extrabold border-l-4 border-[#99badd]' : (index % 2 === 0 ? 'bg-[#11234B]' : 'bg-[#1a2f5c]/40');
+                
+                return `
+                    <tr class="${rowBg} hover:bg-[#99badd]/10 transition-colors">
+                        <td class="p-3.5 flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-full ${isLP ? 'bg-[#99badd] text-[#11234B]' : 'bg-[#1a2f5c] text-[#99badd]'} flex items-center justify-center text-xs font-black">${index + 1}</span>
+                            <span class="${isLP ? 'text-[#99badd] font-black' : 'text-white'}">${item.team}</span>
+                        </td>
+                        <td class="p-3.5 text-center text-emerald-400 font-bold">${item.w}</td>
+                        <td class="p-3.5 text-center text-rose-400 font-bold">${item.l}</td>
+                        <td class="p-3.5 text-center text-[#99badd]/80">${item.gp}</td>
+                        <td class="p-3.5 text-center font-black">${item.pct}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Render Game-by-Game SMAC Results Table
+        function renderResults(data = smacResults) {
+            const tbody = document.getElementById('resultsTableBody');
+            tbody.innerHTML = data.map((item, index) => {
+                const isLP = item.isLP || item.matchup.includes('La Plata');
+                const rowBg = isLP ? 'bg-[#99badd]/15 border-l-4 border-[#99badd]' : (index % 2 === 0 ? 'bg-[#11234B]' : 'bg-[#1a2f5c]/40');
+                const scoreStyle = item.score === 'No Score' ? 'text-[#99badd]/50 italic' : 'font-extrabold text-[#99badd] bg-[#11234B] px-3 py-1 rounded-lg border border-[#99badd]/20';
+
+                return `
+                    <tr class="${rowBg} hover:bg-[#99badd]/10 transition-colors">
+                        <td class="p-3.5 text-xs text-[#99badd] font-bold">${item.date}</td>
+                        <td class="p-3.5 font-semibold ${isLP ? 'text-white font-bold' : 'text-white/90'}">
+                            ${item.matchup}
+                            ${isLP ? '<span class="ml-2 text-[10px] text-[#99badd] font-bold">⚽ LP Match</span>' : ''}
+                        </td>
+                        <td class="p-3.5 text-center">
+                            <span class="${scoreStyle}">${item.score}</span>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Filter Results
+        function filterResults() {
+            const query = document.getElementById('resultsSearch').value.toLowerCase();
+            const filtered = smacResults.filter(r => 
+                r.matchup.toLowerCase().includes(query) || 
+                r.date.toLowerCase().includes(query) ||
+                r.score.toLowerCase().includes(query)
+            );
+            renderResults(filtered);
+        }
+
+        // Render La Plata Schedule Table
+        function renderSchedule() {
+            const tbody = document.getElementById('scheduleTableBody');
+            tbody.innerHTML = lpSchedule.map((item, index) => {
+                const rowBg = index % 2 === 0 ? 'bg-[#11234B]' : 'bg-[#1a2f5c]/40';
+                const isWin = item.result.includes('(W)');
+                const isLoss = item.result.includes('(L)');
+                const isTie = item.result.includes('(T)');
+                
+                let resultBadge = `<span class="text-xs text-[#99badd]/60 italic">Upcoming</span>`;
+                if (isWin) resultBadge = `<span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 px-2.5 py-1 rounded-md text-xs font-bold">${item.result}</span>`;
+                if (isLoss) resultBadge = `<span class="bg-rose-500/20 text-rose-400 border border-rose-500/40 px-2.5 py-1 rounded-md text-xs font-bold">${item.result}</span>`;
+                if (isTie) resultBadge = `<span class="bg-amber-500/20 text-amber-400 border border-amber-500/40 px-2.5 py-1 rounded-md text-xs font-bold">${item.result}</span>`;
+
+                return `
+                    <tr class="${rowBg} hover:bg-[#99badd]/10 transition-colors">
+                        <td class="p-3.5">
+                            <span class="block text-sm font-bold text-white">${item.date}</span>
+                            <span class="text-xs text-[#99badd]">${item.day}</span>
+                        </td>
+                        <td class="p-3.5">
+                            <span class="block text-xs font-semibold text-white">${item.time}</span>
+                            <span class="text-[10px] text-[#99badd]/70 uppercase font-bold">${item.loc}</span>
+                        </td>
+                        <td class="p-3.5 font-bold text-white">${item.opp}</td>
+                        <td class="p-3.5 text-center">${resultBadge}</td>
+                        <td class="p-3.5 text-xs text-[#99badd]/80">${item.notes}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Initialize Application
+        document.addEventListener('DOMContentLoaded', () => {
+            switchGame('season');
+            renderStandings();
+            renderResults();
+            renderSchedule();
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
