@@ -111,6 +111,7 @@
                             </label>
                             <select id="gameSelector" onchange="switchGame(this.value)" class="bg-[#1a2f5c] text-white text-xs font-bold rounded-lg px-3 py-1.5 border border-[#99badd]/40 focus:outline-none focus:ring-2 focus:ring-[#99badd] transition-all cursor-pointer">
                                 <option value="season" selected>2026 Season Cumulative Overview</option>
+                                <option value="7">Sep 17 - vs Patuxent (6-0 W)</option>
                                 <option value="latest">Sep 15 - vs Lackey (6-1 W)</option>
                                 <option value="5">Sep 14 - vs Oxon Hill (6-1 W)</option>
                                 <option value="4">Sep 10 - vs Leonardtown (1-4 L)</option>
@@ -122,7 +123,7 @@
                     </div>
 
                     <!-- Live Scoreboard Display -->
-                    <div class="flex items-center justify-center gap-6 bg-[#1a2f5c] px-8 py-5 rounded-2xl border border-[#99badd]/30 shadow-xl">
+                    <div id="scoreboardContainer" class="flex items-center justify-center gap-6 bg-[#1a2f5c] px-8 py-5 rounded-2xl border border-[#99badd]/30 shadow-xl">
                         <!-- Home/La Plata -->
                         <div class="text-center">
                             <span class="block text-xs font-extrabold text-[#99badd] uppercase tracking-wider">La Plata</span>
@@ -130,7 +131,7 @@
                         </div>
 
                         <div class="text-center px-2">
-                            <span class="text-2xl font-bold text-[#99badd]/60">:</span>
+                            <span class="text-2xl font-bold text-[#99badd]/60" id="scoreDivider">:</span>
                             <div id="matchBadge" class="text-[10px] font-black uppercase px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 mt-1">WIN</div>
                         </div>
 
@@ -221,7 +222,7 @@
                                 <i data-lucide="shield" class="w-4 h-4"></i>
                             </div>
                         </div>
-                        <div class="text-3xl font-black text-white mb-1" id="saveStatMain">43</div>
+                        <div class="text-3xl font-black text-white mb-1" id="saveStatMain">46</div>
                         <p class="text-xs text-[#99badd]/80" id="saveStatMainDesc">2026 Season Overall</p>
                         <div class="mt-4 w-full bg-[#1a2f5c] h-2 rounded-full overflow-hidden">
                             <div id="saveStatBar1" class="bg-[#99badd] h-full progress-bar-fill" style="width: 100%"></div>
@@ -239,10 +240,10 @@
                                 <i data-lucide="user-check" class="w-4 h-4"></i>
                             </div>
                         </div>
-                        <div class="text-3xl font-black text-white mb-1">38</div>
-                        <p class="text-xs text-[#99badd]/80">Total Saves (5 Games Played)</p>
+                        <div class="text-3xl font-black text-white mb-1">41</div>
+                        <p class="text-xs text-[#99badd]/80">Total Saves (6 Games Played)</p>
                         <div class="mt-4 w-full bg-[#1a2f5c] h-2 rounded-full overflow-hidden">
-                            <div class="bg-[#99badd] h-full progress-bar-fill" style="width: 88%"></div>
+                            <div class="bg-[#99badd] h-full progress-bar-fill" style="width: 89%"></div>
                         </div>
                     </div>
 
@@ -260,7 +261,7 @@
                         <div class="text-3xl font-black text-white mb-1">5</div>
                         <p class="text-xs text-[#99badd]/80">Total Saves (vs. Marriott Ridge)</p>
                         <div class="mt-4 w-full bg-[#1a2f5c] h-2 rounded-full overflow-hidden">
-                            <div class="bg-[#99badd] h-full progress-bar-fill" style="width: 12%"></div>
+                            <div class="bg-[#99badd] h-full progress-bar-fill" style="width: 11%"></div>
                         </div>
                     </div>
 
@@ -282,18 +283,6 @@
                     <h2 class="text-2xl sm:text-3xl font-black text-white">Southern Maryland Athletic Conference (SMAC)</h2>
                     <p class="text-xs text-[#99badd]/80 mt-1">Official League Standings & Conference Match Results</p>
                 </div>
-                
-                <div class="bg-[#1a2f5c] px-6 py-4 rounded-xl border border-[#99badd]/30 text-center flex items-center gap-4">
-                    <div>
-                        <span class="text-xs text-[#99badd] font-bold block uppercase">La Plata Rank</span>
-                        <span class="text-2xl font-black text-white">#5 in SMAC</span>
-                    </div>
-                    <div class="h-8 w-px bg-[#99badd]/20"></div>
-                    <div>
-                        <span class="text-xs text-[#99badd] font-bold block uppercase">Conference Record</span>
-                        <span class="text-2xl font-black text-emerald-400">3-1-0</span>
-                    </div>
-                </div>
             </div>
 
             <!-- Standings Table Card -->
@@ -302,7 +291,7 @@
                     <h3 class="text-lg font-extrabold text-white flex items-center gap-2">
                         <i data-lucide="trophy" class="w-5 h-5 text-[#99badd]"></i> SMAC Overall Standings
                     </h3>
-                    <span class="text-xs text-[#99badd] bg-[#1a2f5c] px-3 py-1 rounded-full border border-[#99badd]/20 font-medium">Updated Sep 16, 2026</span>
+                    <span class="text-xs text-[#99badd] bg-[#1a2f5c] px-3 py-1 rounded-full border border-[#99badd]/20 font-medium">Updated Sep 17, 2026</span>
                 </div>
 
                 <div class="overflow-x-auto">
@@ -368,7 +357,7 @@
                         </h3>
                         <p class="text-xs text-[#99badd]/80">Complete regular season game schedule and results</p>
                     </div>
-                    <span class="text-xs font-bold text-[#11234B] bg-[#99badd] px-3 py-1 rounded-full">Record: 3-1-2</span>
+                    <span class="text-xs font-bold text-[#11234B] bg-[#99badd] px-3 py-1 rounded-full">Record: 4-1-2</span>
                 </div>
 
                 <div class="overflow-x-auto">
@@ -396,22 +385,28 @@
     <script>
         // Data Structures
         const smacStandings = [
-            { team: "Leonardtown", w: 5, l: 0, gp: 5, pct: "1.000", isLP: false },
-            { team: "Huntingtown", w: 4, l: 0, gp: 4, pct: "1.000", isLP: false },
-            { team: "Northern", w: 3, l: 1, gp: 4, pct: ".750", isLP: false },
-            { team: "McDonough", w: 3, l: 1, gp: 4, pct: ".750", isLP: false },
-            { team: "La Plata", w: 3, l: 1, gp: 4, pct: ".750", isLP: true },
-            { team: "Calvert", w: 2, l: 1, gp: 3, pct: ".667", isLP: false },
-            { team: "North Point", w: 2, l: 1, gp: 3, pct: ".667", isLP: false },
-            { team: "Patuxent", w: 2, l: 2, gp: 4, pct: ".500", isLP: false },
+            { team: "Leonardtown", w: 6, l: 0, gp: 6, pct: "1.000", isLP: false },
+            { team: "Huntingtown", w: 4, l: 1, gp: 5, pct: ".800", isLP: false },
+            { team: "La Plata", w: 4, l: 1, gp: 5, pct: ".800", isLP: true },
+            { team: "McDonough", w: 4, l: 1, gp: 5, pct: ".800", isLP: false },
+            { team: "North Point", w: 3, l: 1, gp: 4, pct: ".750", isLP: false },
+            { team: "Northern", w: 3, l: 1, gp: 5, pct: ".600", isLP: false },
+            { team: "Calvert", w: 2, l: 1, gp: 4, pct: ".625", isLP: false },
             { team: "Great Mills", w: 2, l: 3, gp: 5, pct: ".400", isLP: false },
-            { team: "Chopticon", w: 2, l: 3, gp: 5, pct: ".400", isLP: false },
-            { team: "Westlake", w: 0, l: 2, gp: 2, pct: ".000", isLP: false },
-            { team: "Henry E. Lackey", w: 0, l: 5, gp: 5, pct: ".000", isLP: false },
-            { team: "St. Charles", w: 0, l: 5, gp: 5, pct: ".000", isLP: false }
+            { team: "Patuxent", w: 2, l: 4, gp: 6, pct: ".333", isLP: false },
+            { team: "Chopticon", w: 2, l: 4, gp: 6, pct: ".333", isLP: false },
+            { team: "Henry E. Lackey", w: 1, l: 5, gp: 6, pct: ".167", isLP: false },
+            { team: "Westlake", w: 0, l: 3, gp: 3, pct: ".000", isLP: false },
+            { team: "St. Charles", w: 0, l: 6, gp: 6, pct: ".000", isLP: false }
         ];
 
         const smacResults = [
+            { date: "Sep 17, 2026", matchup: "Patuxent vs. La Plata", score: "0 – 6", isLP: true },
+            { date: "Sep 17, 2026", matchup: "Henry E. Lackey vs. Westlake", score: "3 – 1" },
+            { date: "Sep 17, 2026", matchup: "Calvert vs. Northern-C", score: "1 – 1" },
+            { date: "Sep 17, 2026", matchup: "Huntingtown vs. McDonough", score: "0 – 2" },
+            { date: "Sep 17, 2026", matchup: "St. Charles vs. Leonardtown", score: "0 – 11" },
+            { date: "Sep 17, 2026", matchup: "Chopticon vs. North Point", score: "2 – 5" },
             { date: "Sep 15, 2026", matchup: "Patuxent vs. North Point", score: "2 – 6" },
             { date: "Sep 15, 2026", matchup: "Henry E. Lackey vs. La Plata", score: "1 – 6", isLP: true },
             { date: "Sep 15, 2026", matchup: "Huntingtown vs. Great Mills", score: "4 – 0" },
@@ -449,19 +444,43 @@
             { date: "5-Sep", day: "Saturday", time: "—", loc: "Neutral", opp: "Southern High School", result: "1 - 1 (T)", notes: "Tournament Match" },
             { date: "8-Sep", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "Chopticon", result: "3 - 1 (W)", notes: "SMAC Match" },
             { date: "10-Sep", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Leonardtown", result: "1 - 4 (L)", notes: "SMAC Match" },
-            { date: "14-Sep", day: "Monday", time: "6:15 PM", loc: "Home", opp: "Oxon Hill", result: "6 - 1 (W)", notes: "Non-Conference" },
+            { date: "14-Sep", day: "Monday", time: "6:15 PM", loc: "Home", opp: "Oxon Hill", result: "6 - 1 (W)", notes: "Teacher Appreciation (JV 4:30)" },
             { date: "15-Sep", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "Lackey", result: "6 - 1 (W)", notes: "SMAC Match" },
-            { date: "17-Sep", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Patuxent", result: "Upcoming", notes: "SMAC Match" },
-            { date: "24-Sep", day: "Thursday", time: "6:15 PM", loc: "Away", opp: "Northern", result: "Upcoming", notes: "SMAC Match" },
-            { date: "29-Sep", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "McDonough", result: "Upcoming", notes: "SMAC Match" },
-            { date: "1-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Northern", result: "Upcoming", notes: "Non-Conference" },
-            { date: "6-Oct", day: "Tuesday", time: "4:30 PM", loc: "Home", opp: "North Point", result: "Upcoming", notes: "SMAC Match" },
-            { date: "8-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Huntingtown", result: "Upcoming", notes: "SMAC Match" },
-            { date: "13-Oct", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "Westlake", result: "Upcoming", notes: "SMAC Match" },
-            { date: "15-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Calvert", result: "Upcoming", notes: "SMAC Match" }
+            { date: "17-Sep", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Patuxent", result: "6 - 0 (W)", notes: "SMAC Match" },
+            { date: "24-Sep", day: "Thursday", time: "6:15 PM", loc: "Away", opp: "Northern", result: "Upcoming", notes: "Regular Season" },
+            { date: "29-Sep", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "McDonough", result: "Upcoming", notes: "Regular Season" },
+            { date: "1-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Northern", result: "Upcoming", notes: "W/ JV 4:30" },
+            { date: "6-Oct", day: "Tuesday", time: "4:30 PM", loc: "Home", opp: "North Point", result: "Upcoming", notes: "Regular Season" },
+            { date: "8-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Huntingtown", result: "Upcoming", notes: "Regular Season" },
+            { date: "13-Oct", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "Westlake", result: "Upcoming", notes: "Regular Season" },
+            { date: "15-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Calvert", result: "Upcoming", notes: "Senior Night" }
         ];
 
         const gamesData = {
+            "7": {
+                date: "Sep 17, 2026",
+                opponent: "Patuxent",
+                location: "Home Match",
+                homeScore: 6,
+                awayScore: 0,
+                result: "WIN",
+                resultClass: "bg-emerald-500/20 text-emerald-400 border-emerald-500/40",
+                goals: [
+                    { name: "Emma", count: 2 },
+                    { name: "Callie", count: 1 },
+                    { name: "Brynn", count: 1 },
+                    { name: "Amiya", count: 1 },
+                    { name: "Evelyn", count: 1 }
+                ],
+                assists: [
+                    { name: "Abigial", count: 1 },
+                    { name: "Zoey", count: 1 },
+                    { name: "Emma", count: 1 },
+                    { name: "Finley", count: 1 },
+                    { name: "Carly", count: 1 }
+                ],
+                saves: "3 Saves (Madelyn)"
+            },
             "latest": {
                 date: "Sep 15, 2026",
                 opponent: "Lackey",
@@ -573,32 +592,33 @@
             },
             "season": {
                 date: "2026 Season Overall",
-                opponent: "6 Games Played",
-                location: "Record: 3-1-2",
-                homeScore: 18,
+                opponent: "7 Games Played",
+                location: "Record: 4-1-2",
+                homeScore: 24,
                 awayScore: 9,
-                result: "3-1-2",
+                result: "4-1-2",
                 resultClass: "bg-[#99badd]/20 text-[#99badd] border-[#99badd]/40",
                 goals: [
-                    { name: "Emma", count: 6 },
-                    { name: "Callie", count: 4 },
-                    { name: "Brynn", count: 2 },
-                    { name: "Evelyn", count: 2 },
+                    { name: "Emma", count: 8 },
+                    { name: "Callie", count: 5 },
+                    { name: "Brynn", count: 3 },
+                    { name: "Evelyn", count: 3 },
                     { name: "Kiley", count: 2 },
                     { name: "Abigial", count: 1 },
-                    { name: "Zoey", count: 1 }
+                    { name: "Zoey", count: 1 },
+                    { name: "Amiya", count: 1 }
                 ],
                 assists: [
                     { name: "Brynn", count: 3 },
-                    { name: "Abigial", count: 2 },
+                    { name: "Abigial", count: 3 },
                     { name: "Kiley", count: 2 },
-                    { name: "Zoey", count: 1 },
-                    { name: "Finley", count: 1 },
-                    { name: "Emma", count: 1 },
-                    { name: "Madelyn", count: 1 },
-                    { name: "Carly", count: 1 }
+                    { name: "Zoey", count: 2 },
+                    { name: "Finley", count: 2 },
+                    { name: "Emma", count: 2 },
+                    { name: "Carly", count: 2 },
+                    { name: "Madelyn", count: 1 }
                 ],
-                saves: "43 Total Saves (Madelyn: 38, Stella: 5)"
+                saves: "46 Total Saves (Madelyn: 41, Stella: 5)"
             }
         };
 
@@ -622,9 +642,24 @@
             document.getElementById('matchDate').innerText = data.date;
             document.getElementById('matchTitle').innerText = key === 'season' ? '2026 Season Cumulative Totals' : `La Plata vs ${data.opponent}`;
             document.getElementById('matchLocation').innerText = data.location;
-            document.getElementById('opponentName').innerText = key === 'season' ? 'Opponents' : data.opponent;
-            document.getElementById('scoreHome').innerText = data.homeScore;
-            document.getElementById('scoreAway').innerText = data.awayScore;
+            document.getElementById('opponentName').innerText = key === 'season' ? '7 Games Played' : data.opponent;
+
+            const homeScoreEl = document.getElementById('scoreHome');
+            const awayScoreEl = document.getElementById('scoreAway');
+            const dividerEl = document.getElementById('scoreDivider');
+            const scoreboardContainer = document.getElementById('scoreboardContainer');
+
+            // Hide overall score box on cumulative view, show score box for individual games
+            if (key === 'season') {
+                if (scoreboardContainer) scoreboardContainer.classList.add('hidden');
+            } else {
+                if (scoreboardContainer) scoreboardContainer.classList.remove('hidden');
+                homeScoreEl.classList.remove('hidden');
+                awayScoreEl.classList.remove('hidden');
+                if (dividerEl) dividerEl.classList.remove('hidden');
+                homeScoreEl.innerText = data.homeScore;
+                awayScoreEl.innerText = data.awayScore;
+            }
 
             const badge = document.getElementById('matchBadge');
             badge.innerText = data.result;
