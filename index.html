@@ -111,6 +111,8 @@
                             </label>
                             <select id="gameSelector" onchange="switchGame(this.value)" class="bg-[#1a2f5c] text-white text-xs font-bold rounded-lg px-3 py-1.5 border border-[#99badd]/40 focus:outline-none focus:ring-2 focus:ring-[#99badd] transition-all cursor-pointer">
                                 <option value="season" selected>2026 Season Cumulative Overview</option>
+                                <option value="10">Oct 1 - vs Northern (3-7 L)</option>
+                                <option value="9">Sep 29 - vs McDonough (0-8 L)</option>
                                 <option value="8">Sep 24 - vs Northern (0-7 L)</option>
                                 <option value="7">Sep 17 - vs Patuxent (6-0 W)</option>
                                 <option value="latest">Sep 15 - vs Lackey (6-1 W)</option>
@@ -221,10 +223,46 @@
                                 <i data-lucide="shield" class="w-4 h-4"></i>
                             </div>
                         </div>
-                        <div class="text-3xl font-black text-white mb-1" id="saveStatMain">54</div>
+                        <div class="text-3xl font-black text-white mb-1" id="saveStatMain">61</div>
                         <p class="text-xs text-[#99badd]/80" id="saveStatMainDesc">2026 Season Overall</p>
                         <div class="mt-4 w-full bg-[#1a2f5c] h-2 rounded-full overflow-hidden">
                             <div id="saveStatBar1" class="bg-[#99badd] h-full progress-bar-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Goalkeeper Stats (Madelyn) -->
+                    <div class="bg-navy-main p-5 rounded-2xl border border-[#99badd]/30 relative overflow-hidden group hover:border-[#99badd]/60 transition-all shadow-md">
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="text-xs font-bold text-[#99badd] uppercase tracking-wider">Madelyn #00</span>
+                                <h4 class="text-sm font-bold text-white">Goalkeeper</h4>
+                            </div>
+                            <div class="p-2 rounded-lg bg-[#99badd]/10 text-[#99badd]">
+                                <i data-lucide="user-check" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <div class="text-3xl font-black text-white mb-1">48</div>
+                        <p class="text-xs text-[#99badd]/80">Total Saves (7 Games Played)</p>
+                        <div class="mt-4 w-full bg-[#1a2f5c] h-2 rounded-full overflow-hidden">
+                            <div class="bg-[#99badd] h-full progress-bar-fill" style="width: 79%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Goalkeeper Stats (Stella) -->
+                    <div class="bg-navy-main p-5 rounded-2xl border border-[#99badd]/30 relative overflow-hidden group hover:border-[#99badd]/60 transition-all shadow-md">
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="text-xs font-bold text-[#99badd] uppercase tracking-wider">Stella</span>
+                                <h4 class="text-sm font-bold text-white">Goalkeeper</h4>
+                            </div>
+                            <div class="p-2 rounded-lg bg-[#99badd]/10 text-[#99badd]">
+                                <i data-lucide="user-check" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <div class="text-3xl font-black text-white mb-1">22</div>
+                        <p class="text-xs text-[#99badd]/80">Total Saves (3 Games Played)</p>
+                        <div class="mt-4 w-full bg-[#1a2f5c] h-2 rounded-full overflow-hidden">
+                            <div class="bg-[#99badd] h-full progress-bar-fill" style="width: 31%"></div>
                         </div>
                     </div>
 
@@ -392,7 +430,7 @@
                         </h3>
                         <p class="text-xs text-[#99badd]/80">Complete regular season game schedule and results</p>
                     </div>
-                    <span class="text-xs font-bold text-[#11234B] bg-[#99badd] px-3 py-1 rounded-full">Record: 4-2-2</span>
+                    <span class="text-xs font-bold text-[#11234B] bg-[#99badd] px-3 py-1 rounded-full">Record: 4-4-2</span>
                 </div>
 
                 <div class="overflow-x-auto">
@@ -420,12 +458,12 @@
         // Data Structures
         const smacStandings = [
             { team: "Leonardtown", w: 8, l: 0, gp: 8, pct: "1.000", isLP: false },
-            { team: "Northern", w: 6, l: 1, gp: 7, pct: ".857", isLP: false },
-            { team: "McDonough", w: 5, l: 1, gp: 6, pct: ".833", isLP: false },
+            { team: "Northern", w: 7, l: 1, gp: 8, pct: ".875", isLP: false },
+            { team: "McDonough", w: 6, l: 1, gp: 7, pct: ".857", isLP: false },
             { team: "Huntingtown", w: 5, l: 1, gp: 6, pct: ".833", isLP: false },
-            { team: "La Plata", w: 4, l: 2, gp: 6, pct: ".667", isLP: true },
             { team: "Calvert", w: 3, l: 2, gp: 5, pct: ".600", isLP: false },
             { team: "North Point", w: 3, l: 2, gp: 5, pct: ".600", isLP: false },
+            { team: "La Plata", w: 4, l: 4, gp: 8, pct: ".500", isLP: true },
             { team: "Great Mills", w: 4, l: 4, gp: 8, pct: ".500", isLP: false },
             { team: "Chopticon", w: 2, l: 5, gp: 7, pct: ".286", isLP: false },
             { team: "Patuxent", w: 2, l: 6, gp: 8, pct: ".250", isLP: false },
@@ -435,6 +473,8 @@
         ];
 
         const smacResults = [
+            { date: "Oct 01, 2026", matchup: "Northern vs. La Plata", score: "7 – 3", isLP: true },
+            { date: "Sep 29, 2026", matchup: "McDonough vs. La Plata", score: "8 – 0", isLP: true },
             { date: "Sep 26, 2026", matchup: "Calvert vs. Leonardtown", score: "2 – 3" },
             { date: "Sep 25, 2026", matchup: "Northern-C vs. Great Mills", score: "7 – 1" },
             { date: "Sep 24, 2026", matchup: "Patuxent vs. McDonough", score: "1 – 9" },
@@ -491,8 +531,8 @@
             { date: "15-Sep", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "Lackey", result: "6 - 1 (W)", notes: "SMAC Match" },
             { date: "17-Sep", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Patuxent", result: "6 - 0 (W)", notes: "SMAC Match" },
             { date: "24-Sep", day: "Thursday", time: "6:15 PM", loc: "Away", opp: "Northern", result: "0 - 7 (L)", notes: "SMAC Match" },
-            { date: "29-Sep", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "McDonough", result: "Upcoming", notes: "Regular Season" },
-            { date: "1-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Northern", result: "Upcoming", notes: "W/ JV 4:30" },
+            { date: "29-Sep", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "McDonough", result: "0 - 8 (L)", notes: "Regular Season" },
+            { date: "1-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Northern", result: "3 - 7 (L)", notes: "W/ JV 4:30" },
             { date: "6-Oct", day: "Tuesday", time: "4:30 PM", loc: "Home", opp: "North Point", result: "Upcoming", notes: "Regular Season" },
             { date: "8-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Huntingtown", result: "Upcoming", notes: "Regular Season" },
             { date: "13-Oct", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "Westlake", result: "Upcoming", notes: "Regular Season" },
@@ -500,6 +540,37 @@
         ];
 
         const gamesData = {
+            "10": {
+                date: "Oct 1, 2026",
+                opponent: "Northern",
+                location: "Home Match",
+                homeScore: 3,
+                awayScore: 7,
+                result: "LOSS",
+                resultClass: "bg-rose-500/20 text-rose-400 border-rose-500/40",
+                goals: [
+                    { name: "Maya", count: 1 },
+                    { name: "Evelyn", count: 1 },
+                    { name: "Kiley", count: 1 }
+                ],
+                assists: [
+                    { name: "Kiley", count: 1 },
+                    { name: "Abigial", count: 1 }
+                ],
+                saves: "9 Saves (Stella)"
+            },
+            "9": {
+                date: "Sep 29, 2026",
+                opponent: "McDonough",
+                location: "Away Match",
+                homeScore: 0,
+                awayScore: 8,
+                result: "LOSS",
+                resultClass: "bg-rose-500/20 text-rose-400 border-rose-500/40",
+                goals: [],
+                assists: [],
+                saves: "7 Saves (Madelyn)"
+            },
             "8": {
                 date: "Sep 24, 2026",
                 opponent: "Northern",
@@ -647,33 +718,34 @@
             },
             "season": {
                 date: "2026 Season Overall",
-                opponent: "8 Games Played",
-                location: "Record: 4-2-2",
-                homeScore: 24,
-                awayScore: 16,
-                result: "4-2-2",
+                opponent: "10 Games Played",
+                location: "Record: 4-4-2",
+                homeScore: 27,
+                awayScore: 31,
+                result: "4-4-2",
                 resultClass: "bg-[#99badd]/20 text-[#99badd] border-[#99badd]/40",
                 goals: [
                     { name: "Emma", count: 8 },
                     { name: "Callie", count: 5 },
+                    { name: "Evelyn", count: 4 },
                     { name: "Brynn", count: 3 },
-                    { name: "Evelyn", count: 3 },
-                    { name: "Kiley", count: 2 },
+                    { name: "Kiley", count: 3 },
                     { name: "Abigial", count: 1 },
                     { name: "Zoey", count: 1 },
-                    { name: "Amiya", count: 1 }
+                    { name: "Amiya", count: 1 },
+                    { name: "Maya", count: 1 }
                 ],
                 assists: [
+                    { name: "Abigial", count: 4 },
                     { name: "Brynn", count: 3 },
-                    { name: "Abigial", count: 3 },
-                    { name: "Kiley", count: 2 },
+                    { name: "Kiley", count: 3 },
                     { name: "Zoey", count: 2 },
                     { name: "Finley", count: 2 },
                     { name: "Emma", count: 2 },
                     { name: "Carly", count: 2 },
                     { name: "Madelyn", count: 1 }
                 ],
-                saves: "54 Total Saves (Madelyn: 41, Stella: 13)"
+                saves: "70 Total Saves (Madelyn: 48, Stella: 22)"
             }
         };
 
@@ -760,7 +832,7 @@
                 `;
             }).join('');
 
-            document.getElementById('saveStatMain').innerText = key === 'season' ? '54' : (data.saves.split(' ')[0] || '7');
+            document.getElementById('saveStatMain').innerText = key === 'season' ? '70' : (data.saves.split(' ')[0] || '9');
             document.getElementById('saveStatMainDesc').innerText = key === 'season' ? 'Season Team Saves' : `${data.opponent} Match`;
 
             lucide.createIcons();
