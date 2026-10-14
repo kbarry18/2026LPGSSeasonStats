@@ -111,6 +111,7 @@
                             </label>
                             <select id="gameSelector" onchange="switchGame(this.value)" class="bg-[#1a2f5c] text-white text-xs font-bold rounded-lg px-3 py-1.5 border border-[#99badd]/40 focus:outline-none focus:ring-2 focus:ring-[#99badd] transition-all cursor-pointer">
                                 <option value="season" selected>2026 Season Cumulative Overview</option>
+                                <option value="13">Oct 13 - vs Westlake (10-0 W)</option>
                                 <option value="12">Oct 8 - vs Huntingtown (0-3 L)</option>
                                 <option value="11">Oct 6 - vs North Point (0-3 L)</option>
                                 <option value="10">Oct 1 - vs Northern (3-7 L)</option>
@@ -350,7 +351,7 @@
                         </h3>
                         <p class="text-xs text-[#99badd]/80">Complete regular season game schedule and results</p>
                     </div>
-                    <span class="text-xs font-bold text-[#11234B] bg-[#99badd] px-3 py-1 rounded-full">Record: 4-6-2</span>
+                    <span class="text-xs font-bold text-[#11234B] bg-[#99badd] px-3 py-1 rounded-full">Record: 5-6-2</span>
                 </div>
 
                 <div class="overflow-x-auto">
@@ -383,16 +384,17 @@
             { team: "McDonough", w: 7, l: 2, gp: 10, pct: ".750", isLP: false },
             { team: "North Point", w: 6, l: 2, gp: 8, pct: ".750", isLP: false },
             { team: "Calvert", w: 5, l: 2, gp: 8, pct: ".688", isLP: false },
-            { team: "La Plata", w: 4, l: 6, gp: 10, pct: ".400", isLP: true },
+            { team: "La Plata", w: 5, l: 6, gp: 11, pct: ".455", isLP: true },
             { team: "Great Mills", w: 4, l: 6, gp: 10, pct: ".400", isLP: false },
             { team: "Patuxent", w: 4, l: 7, gp: 11, pct: ".364", isLP: false },
             { team: "Chopticon", w: 3, l: 7, gp: 10, pct: ".300", isLP: false },
             { team: "Henry E. Lackey", w: 2, l: 6, gp: 8, pct: ".250", isLP: false },
-            { team: "Westlake", w: 0, l: 6, gp: 6, pct: ".000", isLP: false },
+            { team: "Westlake", w: 0, l: 7, gp: 7, pct: ".000", isLP: false },
             { team: "St. Charles", w: 0, l: 9, gp: 9, pct: ".000", isLP: false }
         ];
 
         const smacResults = [
+            { date: "Oct 13, 2026", matchup: "La Plata vs. Westlake", score: "10 – 0", isLP: true },
             { date: "Oct 08, 2026", matchup: "Patuxent vs. Great Mills", score: "6 – 2" },
             { date: "Oct 08, 2026", matchup: "Calvert vs. McDonough", score: "0 – 0" },
             { date: "Oct 08, 2026", matchup: "Huntingtown vs. La Plata", score: "3 – 0", isLP: true },
@@ -469,11 +471,37 @@
             { date: "1-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Northern", result: "3 - 7 (L)", notes: "W/ JV 4:30" },
             { date: "6-Oct", day: "Tuesday", time: "4:30 PM", loc: "Home", opp: "North Point", result: "0 - 3 (L)", notes: "Regular Season" },
             { date: "8-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Huntingtown", result: "0 - 3 (L)", notes: "Regular Season" },
-            { date: "13-Oct", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "Westlake", result: "Upcoming", notes: "Regular Season" },
+            { date: "13-Oct", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "Westlake", result: "10 - 0 (W)", notes: "Regular Season" },
             { date: "15-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Calvert", result: "Upcoming", notes: "Senior Night" }
         ];
 
         const gamesData = {
+            "13": {
+                date: "Oct 13, 2026",
+                opponent: "Westlake",
+                location: "Away Match",
+                homeScore: 10,
+                awayScore: 0,
+                result: "WIN",
+                resultClass: "bg-emerald-500/20 text-emerald-400 border-emerald-500/40",
+                goals: [
+                    { name: "Brynn", count: 2 },
+                    { name: "Quinn", count: 2 },
+                    { name: "Evelyn", count: 2 },
+                    { name: "Zoey", count: 1 },
+                    { name: "Kiley", count: 1 },
+                    { name: "Callie", count: 1 },
+                    { name: "Abby", count: 1 }
+                ],
+                assists: [
+                    { name: "Brynn", count: 2 },
+                    { name: "Karis", count: 1 },
+                    { name: "Rowan", count: 1 },
+                    { name: "Evelyn", count: 1 },
+                    { name: "Maya", count: 1 }
+                ],
+                saves: "0 Saves"
+            },
             "12": {
                 date: "Oct 8, 2026",
                 opponent: "Huntingtown",
@@ -513,7 +541,7 @@
                 ],
                 assists: [
                     { name: "Kiley", count: 1 },
-                    { name: "Abigial", count: 1 }
+                    { name: "Abby", count: 1 }
                 ],
                 saves: "9 Saves (Stella)"
             },
@@ -557,7 +585,7 @@
                     { name: "Evelyn", count: 1 }
                 ],
                 assists: [
-                    { name: "Abigial", count: 1 },
+                    { name: "Abby", count: 1 },
                     { name: "Zoey", count: 1 },
                     { name: "Emma", count: 1 },
                     { name: "Finley", count: 1 },
@@ -581,9 +609,30 @@
                 ],
                 assists: [
                     { name: "Madelyn", count: 1 },
-                    { name: "Abigial", count: 1 },
+                    { name: "Abby", count: 1 },
                     { name: "Carly", count: 1 },
                     { name: "Brynn", count: 1 }
+                ],
+                saves: "7 Saves (Madelyn)"
+            },
+            "5": {
+                date: "Sep 14, 2026",
+                opponent: "Oxon Hill",
+                location: "Home Match",
+                homeScore: 6,
+                awayScore: 1,
+                result: "WIN",
+                resultClass: "bg-emerald-500/20 text-emerald-400 border-emerald-500/40",
+                goals: [
+                    { name: "Emma", count: 3 },
+                    { name: "Abby", count: 1 },
+                    { name: "Brynn", count: 1 },
+                    { name: "Callie", count: 1 }
+                ],
+                assists: [
+                    { name: "Brynn", count: 1 },
+                    { name: "Kiley", count: 1 },
+                    { name: "Abby", count: 1 }
                 ],
                 saves: "7 Saves (Madelyn)"
             },
@@ -676,31 +725,36 @@
             },
             "season": {
                 date: "2026 Season Overall",
-                opponent: "12 Games Played",
-                location: "Record: 4-6-2",
-                homeScore: 27,
+                opponent: "13 Games Played",
+                location: "Record: 5-6-2",
+                homeScore: 37,
                 awayScore: 37,
-                result: "4-6-2",
+                result: "5-6-2",
                 resultClass: "bg-[#99badd]/20 text-[#99badd] border-[#99badd]/40",
                 goals: [
                     { name: "Emma", count: 8 },
-                    { name: "Callie", count: 5 },
-                    { name: "Evelyn", count: 4 },
-                    { name: "Brynn", count: 3 },
-                    { name: "Kiley", count: 3 },
-                    { name: "Abigial", count: 1 },
-                    { name: "Zoey", count: 1 },
+                    { name: "Callie", count: 6 },
+                    { name: "Evelyn", count: 6 },
+                    { name: "Brynn", count: 5 },
+                    { name: "Kiley", count: 4 },
+                    { name: "Abby", count: 2 },
+                    { name: "Zoey", count: 2 },
+                    { name: "Quinn", count: 2 },
                     { name: "Amiya", count: 1 },
                     { name: "Maya", count: 1 }
                 ],
                 assists: [
-                    { name: "Abigial", count: 4 },
-                    { name: "Brynn", count: 3 },
+                    { name: "Brynn", count: 5 },
+                    { name: "Abby", count: 4 },
                     { name: "Kiley", count: 3 },
                     { name: "Zoey", count: 2 },
                     { name: "Finley", count: 2 },
                     { name: "Emma", count: 2 },
                     { name: "Carly", count: 2 },
+                    { name: "Karis", count: 1 },
+                    { name: "Rowan", count: 1 },
+                    { name: "Evelyn", count: 1 },
+                    { name: "Maya", count: 1 },
                     { name: "Madelyn", count: 1 }
                 ],
                 saves: "83 Total Saves (Madelyn: 51, Stella: 32)"
