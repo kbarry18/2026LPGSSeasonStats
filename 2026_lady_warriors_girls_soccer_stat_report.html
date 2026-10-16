@@ -97,12 +97,12 @@
                         <div class="flex items-center justify-center md:justify-start gap-2">
                             <div class="inline-flex items-center gap-2 bg-[#99badd]/15 text-[#99badd] text-xs font-bold px-3 py-1 rounded-full border border-[#99badd]/30">
                                 <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
-                                <span id="matchDate">Sep 15, 2026</span>
+                                <span id="matchDate">Oct 15, 2026</span>
                             </div>
-                            <span id="matchLocation" class="text-xs text-[#99badd]/80 bg-[#1a2f5c] px-3 py-1 rounded-full border border-[#99badd]/20 font-medium">Away Match</span>
+                            <span id="matchLocation" class="text-xs text-[#99badd]/80 bg-[#1a2f5c] px-3 py-1 rounded-full border border-[#99badd]/20 font-medium">Home Match</span>
                         </div>
                         
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1" id="matchTitle">La Plata vs Lackey</h2>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1" id="matchTitle">La Plata vs Calvert</h2>
 
                         <!-- Match Selector Dropdown -->
                         <div class="flex items-center gap-2 pt-2 justify-center md:justify-start">
@@ -111,6 +111,7 @@
                             </label>
                             <select id="gameSelector" onchange="switchGame(this.value)" class="bg-[#1a2f5c] text-white text-xs font-bold rounded-lg px-3 py-1.5 border border-[#99badd]/40 focus:outline-none focus:ring-2 focus:ring-[#99badd] transition-all cursor-pointer">
                                 <option value="season" selected>2026 Season Cumulative Overview</option>
+                                <option value="14">Oct 15 - vs Calvert (0-6 L)</option>
                                 <option value="13">Oct 13 - vs Westlake (10-0 W)</option>
                                 <option value="12">Oct 8 - vs Huntingtown (0-3 L)</option>
                                 <option value="11">Oct 6 - vs North Point (0-3 L)</option>
@@ -129,22 +130,22 @@
                     </div>
 
                     <!-- Live Scoreboard Display -->
-                    <div id="scoreboardContainer" class="flex items-center justify-center gap-6 bg-[#1a2f5c] px-8 py-5 rounded-2xl border border-[#99badd]/30 shadow-xl">
+                    <div id="scoreboardContainer" class="flex items-center justify-center gap-6 bg-[#1a2f5c] px-8 py-5 rounded-2xl border border-[#99badd]/30 shadow-xl hidden">
                         <!-- Home/La Plata -->
                         <div class="text-center">
                             <span class="block text-xs font-extrabold text-[#99badd] uppercase tracking-wider">La Plata</span>
-                            <span class="text-5xl font-black text-white" id="scoreHome">6</span>
+                            <span class="text-5xl font-black text-white" id="scoreHome">0</span>
                         </div>
 
                         <div class="text-center px-2">
                             <span class="text-2xl font-bold text-[#99badd]/60" id="scoreDivider">:</span>
-                            <div id="matchBadge" class="text-[10px] font-black uppercase px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 mt-1">WIN</div>
+                            <div id="matchBadge" class="text-[10px] font-black uppercase px-2.5 py-0.5 rounded bg-rose-500/20 text-rose-400 border border-rose-500/40 mt-1">LOSS</div>
                         </div>
 
                         <!-- Opponent -->
                         <div class="text-center">
-                            <span class="block text-xs font-extrabold text-[#99badd] uppercase tracking-wider truncate max-w-[120px]" id="opponentName">Lackey</span>
-                            <span class="text-5xl font-black text-white" id="scoreAway">1</span>
+                            <span class="block text-xs font-extrabold text-[#99badd] uppercase tracking-wider truncate max-w-[120px]" id="opponentName">Calvert</span>
+                            <span class="text-5xl font-black text-white" id="scoreAway">6</span>
                         </div>
                     </div>
                 </div>
@@ -165,7 +166,7 @@
                                     <h3 class="text-lg font-extrabold text-white">GOALS</h3>
                                 </div>
                             </div>
-                            <span class="text-3xl font-black text-[#99badd]" id="totalGoalsCount">6</span>
+                            <span class="text-3xl font-black text-[#99badd]" id="totalGoalsCount">37</span>
                         </div>
 
                         <div class="space-y-3" id="goalsList">
@@ -186,7 +187,7 @@
                                     <h3 class="text-lg font-extrabold text-white">ASSISTS</h3>
                                 </div>
                             </div>
-                            <span class="text-3xl font-black text-[#99badd]" id="totalAssistsCount">4</span>
+                            <span class="text-3xl font-black text-[#99badd]" id="totalAssistsCount">24</span>
                         </div>
 
                         <div class="space-y-3" id="assistsList">
@@ -216,8 +217,8 @@
                                 <i data-lucide="shield" class="w-4 h-4"></i>
                             </div>
                         </div>
-                        <div class="text-3xl font-black text-white mb-1" id="saveStatMain">83</div>
-                        <p class="text-xs text-[#99badd]/80" id="saveStatMainDesc">2026 Season Overall</p>
+                        <div class="text-3xl font-black text-white mb-1" id="saveStatMain">87</div>
+                        <p class="text-xs text-[#99badd]/80" id="saveStatMainDesc">2026 Season Team Saves</p>
                         <div class="mt-4 w-full bg-[#1a2f5c] h-2 rounded-full overflow-hidden">
                             <div id="saveStatBar1" class="bg-[#99badd] h-full progress-bar-fill" style="width: 100%"></div>
                         </div>
@@ -234,10 +235,10 @@
                                 <i data-lucide="user-check" class="w-4 h-4"></i>
                             </div>
                         </div>
-                        <div class="text-3xl font-black text-white mb-1">51</div>
-                        <p class="text-xs text-[#99badd]/80">Total Saves (8 Games Played)</p>
+                        <div class="text-3xl font-black text-white mb-1">55</div>
+                        <p class="text-xs text-[#99badd]/80">Total Saves (9 Games Played)</p>
                         <div class="mt-4 w-full bg-[#1a2f5c] h-2 rounded-full overflow-hidden">
-                            <div class="bg-[#99badd] h-full progress-bar-fill" style="width: 61%"></div>
+                            <div class="bg-[#99badd] h-full progress-bar-fill" style="width: 63%"></div>
                         </div>
                     </div>
 
@@ -255,7 +256,7 @@
                         <div class="text-3xl font-black text-white mb-1">32</div>
                         <p class="text-xs text-[#99badd]/80">Total Saves (5 Games Played)</p>
                         <div class="mt-4 w-full bg-[#1a2f5c] h-2 rounded-full overflow-hidden">
-                            <div class="bg-[#99badd] h-full progress-bar-fill" style="width: 39%"></div>
+                            <div class="bg-[#99badd] h-full progress-bar-fill" style="width: 37%"></div>
                         </div>
                     </div>
 
@@ -285,7 +286,7 @@
                     <h3 class="text-lg font-extrabold text-white flex items-center gap-2">
                         <i data-lucide="trophy" class="w-5 h-5 text-[#99badd]"></i> SMAC Overall Standings
                     </h3>
-                    <span class="text-xs text-[#99badd] bg-[#1a2f5c] px-3 py-1 rounded-full border border-[#99badd]/20 font-medium">Updated Sep 29, 2026</span>
+                    <span class="text-xs text-[#99badd] bg-[#1a2f5c] px-3 py-1 rounded-full border border-[#99badd]/20 font-medium">Updated Oct 15, 2026</span>
                 </div>
 
                 <div class="overflow-x-auto">
@@ -351,7 +352,7 @@
                         </h3>
                         <p class="text-xs text-[#99badd]/80">Complete regular season game schedule and results</p>
                     </div>
-                    <span class="text-xs font-bold text-[#11234B] bg-[#99badd] px-3 py-1 rounded-full">Record: 5-6-2</span>
+                    <span class="text-xs font-bold text-[#11234B] bg-[#99badd] px-3 py-1 rounded-full">Record: 5-7-2</span>
                 </div>
 
                 <div class="overflow-x-auto">
@@ -378,22 +379,30 @@
     <script>
         // Data Structures
         const smacStandings = [
-            { team: "Leonardtown", w: 9, l: 0, gp: 9, pct: "1.000", isLP: false },
-            { team: "Northern", w: 9, l: 1, gp: 10, pct: ".900", isLP: false },
-            { team: "Huntingtown", w: 7, l: 1, gp: 8, pct: ".875", isLP: false },
-            { team: "McDonough", w: 7, l: 2, gp: 10, pct: ".750", isLP: false },
-            { team: "North Point", w: 6, l: 2, gp: 8, pct: ".750", isLP: false },
-            { team: "Calvert", w: 5, l: 2, gp: 8, pct: ".688", isLP: false },
-            { team: "La Plata", w: 5, l: 6, gp: 11, pct: ".455", isLP: true },
-            { team: "Great Mills", w: 4, l: 6, gp: 10, pct: ".400", isLP: false },
-            { team: "Patuxent", w: 4, l: 7, gp: 11, pct: ".364", isLP: false },
-            { team: "Chopticon", w: 3, l: 7, gp: 10, pct: ".300", isLP: false },
-            { team: "Henry E. Lackey", w: 2, l: 6, gp: 8, pct: ".250", isLP: false },
-            { team: "Westlake", w: 0, l: 7, gp: 7, pct: ".000", isLP: false },
-            { team: "St. Charles", w: 0, l: 9, gp: 9, pct: ".000", isLP: false }
+            { team: "Leonardtown", w: 10, l: 0, gp: 10, pct: "1.000", isLP: false },
+            { team: "Northern", w: 10, l: 1, gp: 11, pct: ".909", isLP: false },
+            { team: "Huntingtown", w: 8, l: 2, gp: 10, pct: ".800", isLP: false },
+            { team: "McDonough", w: 8, l: 2, gp: 10, pct: ".800", isLP: false },
+            { team: "Calvert", w: 7, l: 2, gp: 9, pct: ".778", isLP: false },
+            { team: "North Point", w: 7, l: 2, gp: 9, pct: ".778", isLP: false },
+            { team: "La Plata", w: 5, l: 7, gp: 12, pct: ".417", isLP: true },
+            { team: "Chopticon", w: 4, l: 7, gp: 11, pct: ".364", isLP: false },
+            { team: "Great Mills", w: 4, l: 7, gp: 11, pct: ".364", isLP: false },
+            { team: "Patuxent", w: 4, l: 8, gp: 12, pct: ".333", isLP: false },
+            { team: "Henry E. Lackey", w: 2, l: 8, gp: 10, pct: ".200", isLP: false },
+            { team: "Westlake", w: 0, l: 8, gp: 8, pct: ".000", isLP: false },
+            { team: "St. Charles", w: 0, l: 10, gp: 10, pct: ".000", isLP: false }
         ];
 
         const smacResults = [
+            { date: "Oct 15, 2026", matchup: "Henry E. Lackey vs. Chopticon", score: "0 – 8" },
+            { date: "Oct 15, 2026", matchup: "Calvert vs. La Plata", score: "6 – 0", isLP: true },
+            { date: "Oct 15, 2026", matchup: "Huntingtown vs. St. Charles", score: "13 – 0" },
+            { date: "Oct 15, 2026", matchup: "McDonough vs. Westlake", score: "18 – 1" },
+            { date: "Oct 15, 2026", matchup: "Great Mills vs. Leonardtown", score: "0 – 8" },
+            { date: "Oct 13, 2026", matchup: "Patuxent vs. Calvert", score: "0 – 12" },
+            { date: "Oct 13, 2026", matchup: "Henry E. Lackey vs. North Point", score: "0 – 3" },
+            { date: "Oct 13, 2026", matchup: "Huntingtown vs. Northern-C", score: "1 – 2" },
             { date: "Oct 13, 2026", matchup: "La Plata vs. Westlake", score: "10 – 0", isLP: true },
             { date: "Oct 08, 2026", matchup: "Patuxent vs. Great Mills", score: "6 – 2" },
             { date: "Oct 08, 2026", matchup: "Calvert vs. McDonough", score: "0 – 0" },
@@ -459,23 +468,35 @@
         ];
 
         const lpSchedule = [
-            { date: "5-Sep", day: "Saturday", time: "—", loc: "Neutral", opp: "Marriott Ridge", result: "1 - 1 (T)", notes: "Tournament Match" },
-            { date: "5-Sep", day: "Saturday", time: "—", loc: "Neutral", opp: "Southern High School", result: "1 - 1 (T)", notes: "Tournament Match" },
-            { date: "8-Sep", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "Chopticon", result: "3 - 1 (W)", notes: "SMAC Match" },
-            { date: "10-Sep", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Leonardtown", result: "1 - 4 (L)", notes: "SMAC Match" },
-            { date: "14-Sep", day: "Monday", time: "6:15 PM", loc: "Home", opp: "Oxon Hill", result: "6 - 1 (W)", notes: "Teacher Appreciation (JV 4:30)" },
-            { date: "15-Sep", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "Lackey", result: "6 - 1 (W)", notes: "SMAC Match" },
-            { date: "17-Sep", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Patuxent", result: "6 - 0 (W)", notes: "SMAC Match" },
-            { date: "24-Sep", day: "Thursday", time: "6:15 PM", loc: "Away", opp: "Northern", result: "0 - 7 (L)", notes: "SMAC Match" },
-            { date: "29-Sep", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "McDonough", result: "0 - 8 (L)", notes: "Regular Season" },
-            { date: "1-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Northern", result: "3 - 7 (L)", notes: "W/ JV 4:30" },
-            { date: "6-Oct", day: "Tuesday", time: "4:30 PM", loc: "Home", opp: "North Point", result: "0 - 3 (L)", notes: "Regular Season" },
-            { date: "8-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Huntingtown", result: "0 - 3 (L)", notes: "Regular Season" },
-            { date: "13-Oct", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "Westlake", result: "10 - 0 (W)", notes: "Regular Season" },
-            { date: "15-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Calvert", result: "Upcoming", notes: "Senior Night" }
+            { date: "5-Sep", day: "Saturday", time: "—", loc: "Neutral", opp: "Marriott Ridge", result: "1 - 1 (T)" },
+            { date: "5-Sep", day: "Saturday", time: "—", loc: "Neutral", opp: "Southern High School", result: "1 - 1 (T)" },
+            { date: "8-Sep", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "Chopticon", result: "3 - 1 (W)" },
+            { date: "10-Sep", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Leonardtown", result: "1 - 4 (L)" },
+            { date: "14-Sep", day: "Monday", time: "6:15 PM", loc: "Home", opp: "Oxon Hill", result: "6 - 1 (W)" },
+            { date: "15-Sep", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "Lackey", result: "6 - 1 (W)" },
+            { date: "17-Sep", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Patuxent", result: "6 - 0 (W)" },
+            { date: "24-Sep", day: "Thursday", time: "6:15 PM", loc: "Away", opp: "Northern", result: "0 - 7 (L)" },
+            { date: "29-Sep", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "McDonough", result: "0 - 8 (L)" },
+            { date: "1-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Northern", result: "3 - 7 (L)" },
+            { date: "6-Oct", day: "Tuesday", time: "4:30 PM", loc: "Home", opp: "North Point", result: "0 - 3 (L)" },
+            { date: "8-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Huntingtown", result: "0 - 3 (L)" },
+            { date: "13-Oct", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "Westlake", result: "10 - 0 (W)" },
+            { date: "15-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Calvert", result: "0 - 6 (L)" }
         ];
 
         const gamesData = {
+            "14": {
+                date: "Oct 15, 2026",
+                opponent: "Calvert",
+                location: "Home Match",
+                homeScore: 0,
+                awayScore: 6,
+                result: "LOSS",
+                resultClass: "bg-rose-500/20 text-rose-400 border-rose-500/40",
+                goals: [],
+                assists: [],
+                saves: "4 Saves (Madelyn)"
+            },
             "13": {
                 date: "Oct 13, 2026",
                 opponent: "Westlake",
@@ -636,27 +657,6 @@
                 ],
                 saves: "7 Saves (Madelyn)"
             },
-            "5": {
-                date: "Sep 14, 2026",
-                opponent: "Oxon Hill",
-                location: "Home Match",
-                homeScore: 6,
-                awayScore: 1,
-                result: "WIN",
-                resultClass: "bg-emerald-500/20 text-emerald-400 border-emerald-500/40",
-                goals: [
-                    { name: "Emma", count: 3 },
-                    { name: "Abigial", count: 1 },
-                    { name: "Brynn", count: 1 },
-                    { name: "Callie", count: 1 }
-                ],
-                assists: [
-                    { name: "Brynn", count: 1 },
-                    { name: "Kiley", count: 1 },
-                    { name: "Abigial", count: 1 }
-                ],
-                saves: "7 Saves (Madelyn)"
-            },
             "4": {
                 date: "Sep 10, 2026",
                 opponent: "Leonardtown",
@@ -725,11 +725,11 @@
             },
             "season": {
                 date: "2026 Season Overall",
-                opponent: "13 Games Played",
-                location: "Record: 5-6-2",
+                opponent: "14 Games Played",
+                location: "Record: 5-7-2",
                 homeScore: 37,
-                awayScore: 37,
-                result: "5-6-2",
+                awayScore: 43,
+                result: "5-7-2",
                 resultClass: "bg-[#99badd]/20 text-[#99badd] border-[#99badd]/40",
                 goals: [
                     { name: "Emma", count: 8 },
@@ -757,7 +757,7 @@
                     { name: "Maya", count: 1 },
                     { name: "Madelyn", count: 1 }
                 ],
-                saves: "83 Total Saves (Madelyn: 51, Stella: 32)"
+                saves: "87 Total Saves (Madelyn: 55, Stella: 32)"
             }
         };
 
@@ -768,9 +768,11 @@
                 btn.className = 'tab-btn px-4 py-2 rounded-lg text-xs font-bold text-[#99badd] hover:text-white transition-all flex items-center gap-2 whitespace-nowrap';
             });
 
-            document.getElementById(`view-${tab}`).classList.remove('hidden');
+            const targetView = document.getElementById(`view-${tab}`);
+            if (targetView) targetView.classList.remove('hidden');
+
             const activeBtn = document.getElementById(`tab-${tab}`);
-            activeBtn.className = 'tab-btn px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap bg-[#99badd] text-[#11234B] shadow-md';
+            if (activeBtn) activeBtn.className = 'tab-btn px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap bg-[#99badd] text-[#11234B] shadow-md';
         }
 
         // Render Match Stats
@@ -778,10 +780,17 @@
             const data = gamesData[key];
             if (!data) return;
 
-            document.getElementById('matchDate').innerText = data.date;
-            document.getElementById('matchTitle').innerText = key === 'season' ? '2026 Season Cumulative Totals' : `La Plata vs ${data.opponent}`;
-            document.getElementById('matchLocation').innerText = data.location;
-            document.getElementById('opponentName').innerText = key === 'season' ? '7 Games Played' : data.opponent;
+            const matchDateEl = document.getElementById('matchDate');
+            if (matchDateEl) matchDateEl.innerText = data.date;
+
+            const matchTitleEl = document.getElementById('matchTitle');
+            if (matchTitleEl) matchTitleEl.innerText = key === 'season' ? '2026 Season Cumulative Totals' : `La Plata vs ${data.opponent}`;
+
+            const matchLocationEl = document.getElementById('matchLocation');
+            if (matchLocationEl) matchLocationEl.innerText = data.location;
+
+            const opponentNameEl = document.getElementById('opponentName');
+            if (opponentNameEl) opponentNameEl.innerText = key === 'season' ? '14 Games Played' : data.opponent;
 
             const homeScoreEl = document.getElementById('scoreHome');
             const awayScoreEl = document.getElementById('scoreAway');
@@ -793,66 +802,92 @@
                 if (scoreboardContainer) scoreboardContainer.classList.add('hidden');
             } else {
                 if (scoreboardContainer) scoreboardContainer.classList.remove('hidden');
-                homeScoreEl.classList.remove('hidden');
-                awayScoreEl.classList.remove('hidden');
+                if (homeScoreEl) {
+                    homeScoreEl.classList.remove('hidden');
+                    homeScoreEl.innerText = data.homeScore;
+                }
+                if (awayScoreEl) {
+                    awayScoreEl.classList.remove('hidden');
+                    awayScoreEl.innerText = data.awayScore;
+                }
                 if (dividerEl) dividerEl.classList.remove('hidden');
-                homeScoreEl.innerText = data.homeScore;
-                awayScoreEl.innerText = data.awayScore;
             }
 
             const badge = document.getElementById('matchBadge');
-            badge.innerText = data.result;
-            badge.className = `text-[10px] font-black uppercase px-2.5 py-0.5 rounded border mt-1 ${data.resultClass}`;
+            if (badge) {
+                badge.innerText = data.result;
+                badge.className = `text-[10px] font-black uppercase px-2.5 py-0.5 rounded border mt-1 ${data.resultClass}`;
+            }
 
             const totalGoals = data.goals.reduce((acc, curr) => acc + curr.count, 0);
             const totalAssists = data.assists.reduce((acc, curr) => acc + curr.count, 0);
 
-            document.getElementById('totalGoalsCount').innerText = totalGoals;
-            document.getElementById('totalAssistsCount').innerText = totalAssists;
+            const totalGoalsEl = document.getElementById('totalGoalsCount');
+            if (totalGoalsEl) totalGoalsEl.innerText = totalGoals;
+
+            const totalAssistsEl = document.getElementById('totalAssistsCount');
+            if (totalAssistsEl) totalAssistsEl.innerText = totalAssists;
 
             // Render Goals
-            document.getElementById('goalsList').innerHTML = data.goals.map(g => {
-                const pct = Math.round((g.count / (totalGoals || 1)) * 100);
-                return `
-                    <div class="bg-[#1a2f5c] p-3 rounded-xl border border-[#99badd]/20 flex items-center justify-between hover:border-[#99badd]/40 transition-all">
-                        <div class="flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-lg bg-[#99badd]/15 text-[#99badd] flex items-center justify-center text-xs font-bold">⚽</span>
-                            <div>
-                                <h4 class="font-bold text-sm text-white">${g.name}</h4>
-                                <span class="text-[10px] text-[#99badd]/70">${pct}% of team goals</span>
+            const goalsListEl = document.getElementById('goalsList');
+            if (goalsListEl) {
+                goalsListEl.innerHTML = data.goals.map(g => {
+                    const pct = Math.round((g.count / (totalGoals || 1)) * 100);
+                    return `
+                        <div class="bg-[#1a2f5c] p-3 rounded-xl border border-[#99badd]/20 flex items-center justify-between hover:border-[#99badd]/40 transition-all">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-[#99badd]/15 text-[#99badd] flex items-center justify-center text-xs font-bold">⚽</span>
+                                <div>
+                                    <h4 class="font-bold text-sm text-white">${g.name}</h4>
+                                    <span class="text-[10px] text-[#99badd]/70">${pct}% of team goals</span>
+                                </div>
                             </div>
+                            <span class="text-lg font-black text-white bg-[#11234B] px-3 py-1 rounded-lg border border-[#99badd]/30">${g.count}</span>
                         </div>
-                        <span class="text-lg font-black text-white bg-[#11234B] px-3 py-1 rounded-lg border border-[#99badd]/30">${g.count}</span>
-                    </div>
-                `;
-            }).join('');
+                    `;
+                }).join('');
+            }
 
             // Render Assists
-            document.getElementById('assistsList').innerHTML = data.assists.map(a => {
-                const pct = Math.round((a.count / (totalAssists || 1)) * 100);
-                return `
-                    <div class="bg-[#1a2f5c] p-3 rounded-xl border border-[#99badd]/20 flex items-center justify-between hover:border-[#99badd]/40 transition-all">
-                        <div class="flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-lg bg-[#99badd]/15 text-[#99badd] flex items-center justify-center text-xs font-bold">🎯</span>
-                            <div>
-                                <h4 class="font-bold text-sm text-white">${a.name}</h4>
-                                <span class="text-[10px] text-[#99badd]/70">${pct}% of team assists</span>
+            const assistsListEl = document.getElementById('assistsList');
+            if (assistsListEl) {
+                assistsListEl.innerHTML = data.assists.map(a => {
+                    const pct = Math.round((a.count / (totalAssists || 1)) * 100);
+                    return `
+                        <div class="bg-[#1a2f5c] p-3 rounded-xl border border-[#99badd]/20 flex items-center justify-between hover:border-[#99badd]/40 transition-all">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-[#99badd]/15 text-[#99badd] flex items-center justify-center text-xs font-bold">🎯</span>
+                                <div>
+                                    <h4 class="font-bold text-sm text-white">${a.name}</h4>
+                                    <span class="text-[10px] text-[#99badd]/70">${pct}% of team assists</span>
+                                </div>
                             </div>
+                            <span class="text-lg font-black text-white bg-[#11234B] px-3 py-1 rounded-lg border border-[#99badd]/30">${a.count}</span>
                         </div>
-                        <span class="text-lg font-black text-white bg-[#11234B] px-3 py-1 rounded-lg border border-[#99badd]/30">${a.count}</span>
-                    </div>
-                `;
-            }).join('');
+                    `;
+                }).join('');
+            }
 
-            document.getElementById('saveStatMain').innerText = key === 'season' ? '83' : (data.saves.split(' ')[0] || '0');
-            document.getElementById('saveStatMainDesc').innerText = key === 'season' ? 'Season Team Saves' : `${data.opponent} Match`;
+            const saveStatMain = document.getElementById('saveStatMain');
+            if (saveStatMain) {
+                saveStatMain.innerText = key === 'season' ? '87' : (data.saves.split(' ')[0] || '0');
+            }
 
-            lucide.createIcons();
+            const saveStatMainDesc = document.getElementById('saveStatMainDesc');
+            if (saveStatMainDesc) {
+                saveStatMainDesc.innerText = key === 'season' ? '2026 Season Team Saves' : `${data.opponent} Match`;
+            }
+
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
         }
 
         // Render SMAC Standings Table
         function renderStandings() {
             const tbody = document.getElementById('standingsTableBody');
+            if (!tbody) return;
+
             tbody.innerHTML = smacStandings.map((item, index) => {
                 const isLP = item.isLP;
                 const rowBg = isLP ? 'bg-[#99badd]/20 text-white font-extrabold border-l-4 border-[#99badd]' : (index % 2 === 0 ? 'bg-[#11234B]' : 'bg-[#1a2f5c]/40');
@@ -875,6 +910,8 @@
         // Render Game-by-Game SMAC Results Table
         function renderResults(data = smacResults) {
             const tbody = document.getElementById('resultsTableBody');
+            if (!tbody) return;
+
             tbody.innerHTML = data.map((item, index) => {
                 const isLP = item.isLP || item.matchup.includes('La Plata');
                 const rowBg = isLP ? 'bg-[#99badd]/15 border-l-4 border-[#99badd]' : (index % 2 === 0 ? 'bg-[#11234B]' : 'bg-[#1a2f5c]/40');
@@ -897,7 +934,10 @@
 
         // Filter Results
         function filterResults() {
-            const query = document.getElementById('resultsSearch').value.toLowerCase();
+            const searchInput = document.getElementById('resultsSearch');
+            if (!searchInput) return;
+
+            const query = searchInput.value.toLowerCase();
             const filtered = smacResults.filter(r => 
                 r.matchup.toLowerCase().includes(query) || 
                 r.date.toLowerCase().includes(query) ||
@@ -909,6 +949,8 @@
         // Render La Plata Schedule Table
         function renderSchedule() {
             const tbody = document.getElementById('scheduleTableBody');
+            if (!tbody) return;
+
             tbody.innerHTML = lpSchedule.map((item, index) => {
                 const rowBg = index % 2 === 0 ? 'bg-[#11234B]' : 'bg-[#1a2f5c]/40';
                 const isWin = item.result.includes('(W)');
@@ -943,7 +985,9 @@
             renderStandings();
             renderResults();
             renderSchedule();
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
         });
     </script>
 </body>
