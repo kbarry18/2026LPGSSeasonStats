@@ -97,12 +97,12 @@
                         <div class="flex items-center justify-center md:justify-start gap-2">
                             <div class="inline-flex items-center gap-2 bg-[#99badd]/15 text-[#99badd] text-xs font-bold px-3 py-1 rounded-full border border-[#99badd]/30">
                                 <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
-                                <span id="matchDate">Oct 15, 2026</span>
+                                <span id="matchDate">2026 Season Overall</span>
                             </div>
-                            <span id="matchLocation" class="text-xs text-[#99badd]/80 bg-[#1a2f5c] px-3 py-1 rounded-full border border-[#99badd]/20 font-medium">Home Match</span>
+                            <span id="matchLocation" class="text-xs text-[#99badd]/80 bg-[#1a2f5c] px-3 py-1 rounded-full border border-[#99badd]/20 font-medium">Record: 6-7-2</span>
                         </div>
                         
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1" id="matchTitle">La Plata vs Calvert</h2>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1" id="matchTitle">2026 Season Cumulative Totals</h2>
 
                         <!-- Match Selector Dropdown -->
                         <div class="flex items-center gap-2 pt-2 justify-center md:justify-start">
@@ -111,6 +111,7 @@
                             </label>
                             <select id="gameSelector" onchange="switchGame(this.value)" class="bg-[#1a2f5c] text-white text-xs font-bold rounded-lg px-3 py-1.5 border border-[#99badd]/40 focus:outline-none focus:ring-2 focus:ring-[#99badd] transition-all cursor-pointer">
                                 <option value="season" selected>2026 Season Cumulative Overview</option>
+                                <option value="15">Oct 28 - vs Westlake [Playoffs] (9-0 W)</option>
                                 <option value="14">Oct 15 - vs Calvert (0-6 L)</option>
                                 <option value="13">Oct 13 - vs Westlake (10-0 W)</option>
                                 <option value="12">Oct 8 - vs Huntingtown (0-3 L)</option>
@@ -134,18 +135,18 @@
                         <!-- Home/La Plata -->
                         <div class="text-center">
                             <span class="block text-xs font-extrabold text-[#99badd] uppercase tracking-wider">La Plata</span>
-                            <span class="text-5xl font-black text-white" id="scoreHome">0</span>
+                            <span class="text-5xl font-black text-white" id="scoreHome">9</span>
                         </div>
 
                         <div class="text-center px-2">
                             <span class="text-2xl font-bold text-[#99badd]/60" id="scoreDivider">:</span>
-                            <div id="matchBadge" class="text-[10px] font-black uppercase px-2.5 py-0.5 rounded bg-rose-500/20 text-rose-400 border border-rose-500/40 mt-1">LOSS</div>
+                            <div id="matchBadge" class="text-[10px] font-black uppercase px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 mt-1">WIN</div>
                         </div>
 
                         <!-- Opponent -->
                         <div class="text-center">
-                            <span class="block text-xs font-extrabold text-[#99badd] uppercase tracking-wider truncate max-w-[120px]" id="opponentName">Calvert</span>
-                            <span class="text-5xl font-black text-white" id="scoreAway">6</span>
+                            <span class="block text-xs font-extrabold text-[#99badd] uppercase tracking-wider truncate max-w-[120px]" id="opponentName">Westlake</span>
+                            <span class="text-5xl font-black text-white" id="scoreAway">0</span>
                         </div>
                     </div>
                 </div>
@@ -166,7 +167,7 @@
                                     <h3 class="text-lg font-extrabold text-white">GOALS</h3>
                                 </div>
                             </div>
-                            <span class="text-3xl font-black text-[#99badd]" id="totalGoalsCount">37</span>
+                            <span class="text-3xl font-black text-[#99badd]" id="totalGoalsCount">46</span>
                         </div>
 
                         <div class="space-y-3" id="goalsList">
@@ -187,7 +188,7 @@
                                     <h3 class="text-lg font-extrabold text-white">ASSISTS</h3>
                                 </div>
                             </div>
-                            <span class="text-3xl font-black text-[#99badd]" id="totalAssistsCount">24</span>
+                            <span class="text-3xl font-black text-[#99badd]" id="totalAssistsCount">31</span>
                         </div>
 
                         <div class="space-y-3" id="assistsList">
@@ -198,7 +199,7 @@
 
             </section>
 
-            <!-- 3 Horizontal Sections at the Bottom for Saves -->
+            <!-- Goalkeeping Section -->
             <section class="space-y-4">
                 <div class="flex items-center justify-between">
                     <h3 class="text-lg font-extrabold text-white flex items-center gap-2">
@@ -286,7 +287,7 @@
                     <h3 class="text-lg font-extrabold text-white flex items-center gap-2">
                         <i data-lucide="trophy" class="w-5 h-5 text-[#99badd]"></i> SMAC Overall Standings
                     </h3>
-                    <span class="text-xs text-[#99badd] bg-[#1a2f5c] px-3 py-1 rounded-full border border-[#99badd]/20 font-medium">Updated Oct 15, 2026</span>
+                    <span class="text-xs text-[#99badd] bg-[#1a2f5c] px-3 py-1 rounded-full border border-[#99badd]/20 font-medium">Updated Oct 28, 2026</span>
                 </div>
 
                 <div class="overflow-x-auto">
@@ -352,7 +353,7 @@
                         </h3>
                         <p class="text-xs text-[#99badd]/80">Complete regular season game schedule and results</p>
                     </div>
-                    <span class="text-xs font-bold text-[#11234B] bg-[#99badd] px-3 py-1 rounded-full">Record: 5-7-2</span>
+                    <span class="text-xs font-bold text-[#11234B] bg-[#99badd] px-3 py-1 rounded-full">Record: 6-7-2</span>
                 </div>
 
                 <div class="overflow-x-auto">
@@ -385,16 +386,17 @@
             { team: "McDonough", w: 8, l: 2, gp: 10, pct: ".800", isLP: false },
             { team: "Calvert", w: 7, l: 2, gp: 9, pct: ".778", isLP: false },
             { team: "North Point", w: 7, l: 2, gp: 9, pct: ".778", isLP: false },
-            { team: "La Plata", w: 5, l: 7, gp: 12, pct: ".417", isLP: true },
+            { team: "La Plata", w: 6, l: 7, gp: 13, pct: ".462", isLP: true },
             { team: "Chopticon", w: 4, l: 7, gp: 11, pct: ".364", isLP: false },
             { team: "Great Mills", w: 4, l: 7, gp: 11, pct: ".364", isLP: false },
             { team: "Patuxent", w: 4, l: 8, gp: 12, pct: ".333", isLP: false },
             { team: "Henry E. Lackey", w: 2, l: 8, gp: 10, pct: ".200", isLP: false },
-            { team: "Westlake", w: 0, l: 8, gp: 8, pct: ".000", isLP: false },
+            { team: "Westlake", w: 0, l: 9, gp: 9, pct: ".000", isLP: false },
             { team: "St. Charles", w: 0, l: 10, gp: 10, pct: ".000", isLP: false }
         ];
 
         const smacResults = [
+            { date: "Oct 28, 2026", matchup: "La Plata vs. Westlake (Playoffs)", score: "9 – 0", isLP: true },
             { date: "Oct 15, 2026", matchup: "Henry E. Lackey vs. Chopticon", score: "0 – 8" },
             { date: "Oct 15, 2026", matchup: "Calvert vs. La Plata", score: "6 – 0", isLP: true },
             { date: "Oct 15, 2026", matchup: "Huntingtown vs. St. Charles", score: "13 – 0" },
@@ -481,10 +483,35 @@
             { date: "6-Oct", day: "Tuesday", time: "4:30 PM", loc: "Home", opp: "North Point", result: "0 - 3 (L)" },
             { date: "8-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Huntingtown", result: "0 - 3 (L)" },
             { date: "13-Oct", day: "Tuesday", time: "4:30 PM", loc: "Away", opp: "Westlake", result: "10 - 0 (W)" },
-            { date: "15-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Calvert", result: "0 - 6 (L)" }
+            { date: "15-Oct", day: "Thursday", time: "6:15 PM", loc: "Home", opp: "Calvert", result: "0 - 6 (L)" },
+            { date: "28-Oct", day: "Wednesday", time: "6:00 PM", loc: "Home", opp: "Westlake (Playoffs)", result: "9 - 0 (W)" }
         ];
 
         const gamesData = {
+            "15": {
+                date: "Oct 28, 2026",
+                opponent: "Westlake (Playoffs)",
+                location: "Home Match",
+                homeScore: 9,
+                awayScore: 0,
+                result: "WIN",
+                resultClass: "bg-emerald-500/20 text-emerald-400 border-emerald-500/40",
+                goals: [
+                    { name: "Emma", count: 4 },
+                    { name: "Ava", count: 3 },
+                    { name: "Quinn", count: 2 }
+                ],
+                assists: [
+                    { name: "Amiya", count: 1 },
+                    { name: "Evelyn", count: 1 },
+                    { name: "Brynn", count: 1 },
+                    { name: "Maddie", count: 1 },
+                    { name: "Carly", count: 1 },
+                    { name: "Maya", count: 1 },
+                    { name: "Callie", count: 1 }
+                ],
+                saves: "0 Saves"
+            },
             "14": {
                 date: "Oct 15, 2026",
                 opponent: "Calvert",
@@ -725,37 +752,40 @@
             },
             "season": {
                 date: "2026 Season Overall",
-                opponent: "14 Games Played",
-                location: "Record: 5-7-2",
-                homeScore: 37,
+                opponent: "15 Games Played",
+                location: "Record: 6-7-2",
+                homeScore: 46,
                 awayScore: 43,
-                result: "5-7-2",
+                result: "6-7-2",
                 resultClass: "bg-[#99badd]/20 text-[#99badd] border-[#99badd]/40",
                 goals: [
-                    { name: "Emma", count: 8 },
+                    { name: "Emma", count: 12 },
                     { name: "Callie", count: 6 },
                     { name: "Evelyn", count: 6 },
                     { name: "Brynn", count: 5 },
                     { name: "Kiley", count: 4 },
+                    { name: "Quinn", count: 4 },
+                    { name: "Ava", count: 3 },
                     { name: "Abby", count: 2 },
                     { name: "Zoey", count: 2 },
-                    { name: "Quinn", count: 2 },
                     { name: "Amiya", count: 1 },
                     { name: "Maya", count: 1 }
                 ],
                 assists: [
-                    { name: "Brynn", count: 5 },
+                    { name: "Brynn", count: 6 },
                     { name: "Abby", count: 4 },
                     { name: "Kiley", count: 3 },
+                    { name: "Carly", count: 3 },
                     { name: "Zoey", count: 2 },
                     { name: "Finley", count: 2 },
                     { name: "Emma", count: 2 },
-                    { name: "Carly", count: 2 },
+                    { name: "Evelyn", count: 2 },
+                    { name: "Maya", count: 2 },
+                    { name: "Madelyn", count: 2 },
+                    { name: "Amiya", count: 1 },
+                    { name: "Callie", count: 1 },
                     { name: "Karis", count: 1 },
-                    { name: "Rowan", count: 1 },
-                    { name: "Evelyn", count: 1 },
-                    { name: "Maya", count: 1 },
-                    { name: "Madelyn", count: 1 }
+                    { name: "Rowan", count: 1 }
                 ],
                 saves: "87 Total Saves (Madelyn: 55, Stella: 32)"
             }
@@ -790,7 +820,7 @@
             if (matchLocationEl) matchLocationEl.innerText = data.location;
 
             const opponentNameEl = document.getElementById('opponentName');
-            if (opponentNameEl) opponentNameEl.innerText = key === 'season' ? '14 Games Played' : data.opponent;
+            if (opponentNameEl) opponentNameEl.innerText = key === 'season' ? '15 Games Played' : data.opponent;
 
             const homeScoreEl = document.getElementById('scoreHome');
             const awayScoreEl = document.getElementById('scoreAway');
